@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { MainNavComponent } from './main-nav/main-nav.component';
-
 import { ClientesComponent } from './clientes/clientes.component';
-
 import { TransporteComponent } from './transporte/transporte.component';
+import { UnidadComponent } from './unidad/unidad.component';
 
 
 
@@ -14,7 +12,7 @@ const routes: Routes = [
         path: '',
         component: MainNavComponent,
         children: [
-       
+
         {
             path: 'clientes',
             children: [
@@ -23,7 +21,7 @@ const routes: Routes = [
                 path: '',
                 component: ClientesComponent,
             },
-            
+
 
             ]
         },
@@ -36,10 +34,24 @@ const routes: Routes = [
                 path: '',
                 component: TransporteComponent,
             },
-            
+
 
             ]
         },
+
+        {
+            path: 'unidad',
+            children: [
+
+            {
+                path: '',
+                component: UnidadComponent,
+            },
+
+
+            ]
+        },
+
 
         ],
     }

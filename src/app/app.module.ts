@@ -1,18 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule } from '@angular/material/card';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
-import { ClientesComponent } from './clientes/clientes.component';
 import { AppRoutingModule, routedComponents } from './app-routing.module';
+import {
+  MatAutocompleteModule, MatBadgeModule, MatBottomSheetModule, MatButtonModule,
+  MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule,
+  MatDialogModule, MatDividerModule, MatExpansionModule, MatFormFieldModule, MatGridListModule,
+  MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatPaginatorModule,
+  MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSelectModule,
+  MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule,
+  MatStepperModule, MatTableModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatTreeModule
+} from '@angular/material';
+import {FormsModule} from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'; 
+import { HttpModule } from '@angular/http';
+import { dataService } from './dataservice/data.service';
+import {CdkTableModule} from '@angular/cdk/table';
+
+
+import { ClientesComponent } from './clientes/clientes.component';
 import { UnidadComponent } from './unidad/unidad.component';
 import { TransporteComponent } from './transporte/transporte.component';
+
 
 
 @NgModule({
@@ -32,15 +47,27 @@ import { TransporteComponent } from './transporte/transporte.component';
     BrowserModule,
     BrowserAnimationsModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
     MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatMenuModule,
     MatIconModule,
     MatToolbarModule,
-    MatCardModule,
-    MatListModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSortModule,
+    MatTableModule,
+    HttpModule,
+    HttpClientModule,
+    MatCheckboxModule,
+    MatTabsModule,
+    FormsModule, 
   ],
-  providers: [],
+  providers: [dataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

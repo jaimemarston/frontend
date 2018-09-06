@@ -1,0 +1,20 @@
+<mat-card>
+
+<h1>porfis</h1>
+<h3>Book Details with Promise</h3>
+<ul>
+  <li *ngFor="let book of promiseunidades | async" >
+    Id: {{book.id}}, Name: {{book.codigo}}
+  </li>
+</ul>
+
+<h3>Book Details after "then" to Promise </h3>
+<ul>
+  <li *ngFor="let book of unidades" >
+    Id: {{book.id}}, Name: {{book.codigo}}
+  </li>
+</ul>
+
+<div *ngIf="errorMessage"> {{errorMessage}} </div> 
+
+</mat-card>
