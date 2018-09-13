@@ -4,7 +4,7 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { TransporteComponent } from './transporte/transporte.component';
 import { UnidadComponent } from './unidad/unidad.component';
-
+import { AddComponent } from './clientes/add/add.component';
 
 
 const routes: Routes = [
@@ -21,7 +21,10 @@ const routes: Routes = [
                 path: '',
                 component: ClientesComponent,
             },
-
+            {
+                path: 'add',
+                component: AddComponent,
+            },
 
             ]
         },

@@ -4,6 +4,22 @@
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <h1 class="example-app-name">Gestion Administrativa</h1>
     <span class="example-spacer"></span>
+
+    <mat-form-field>
+      <mat-select placeholder="Mes">
+        <mat-option *ngFor="let mes of meses" [value]="mes.value">
+          {{mes.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Periodo">
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <mat-icon class="example-icon">settings</mat-icon>
     <mat-icon class="material-icons">notifications</mat-icon>
     <mat-icon class="example-icon">power_settings_new</mat-icon>

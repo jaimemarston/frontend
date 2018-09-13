@@ -1,4 +1,9 @@
 
+.mat-sidenav {
+  width: 200px;
+}
+
+
 .example-toolbar1 {
   height: 8%;
   background:#ff6d00;

@@ -24,7 +24,42 @@ export class dataService {
 				.toPromise()
 				.then(response => response.json() as Clientes[])
 		}
-		
+
+
+/*
+
+		agregaClientes(): Promise<any> {
+			return this.http.post('http://localhost:8000/cliente', {headers: this.headers})
+				.toPromise()
+				.then(this.extractData)
+		}
+*/
+		agregaClientes(user: Clientes) {
+			
+			console.log(user);
+			return this.http.post('http://localhost:8000/cliente', user, {headers: this.headers})
+			.toPromise()
+			
+		}
+/*		
+		private extractData(res: Response) {
+			let body = res.json();
+			console.log(body);
+				return body || {};
+			}
+		}
+*/
+
+		deleteCliente(id: number): Promise<void> {
+			
+			const url = `${"http://localhost:8000/cliente"}/${id}`;
+			console.log(url);
+			return this.http.delete(url, {headers: this.headers})
+				.toPromise()
+				.then(() => null)
+		}
+
+
 		getUnidad(): Promise<Unidad[]> {
 			return this.http.get('http://localhost:8000/unidad?format=json', {headers: this.headers})
 				.toPromise()

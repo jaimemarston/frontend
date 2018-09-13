@@ -5,6 +5,15 @@ import { map } from 'rxjs/operators';
 import {MediaMatcher} from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 
+export interface Food {
+  value: string;
+  viewValue: string;
+}
+export interface Mes {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-main-nav',
@@ -16,18 +25,30 @@ export class MainNavComponent {
   mobileQuery: MediaQueryList;
   fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
+  foods: Food[] = [
+    {value: 'steak-0', viewValue: '2018'},
+    {value: 'pizza-1', viewValue: '2019'},
+    {value: 'tacos-2', viewValue: '2020'}
+  ];
+
+  meses: Mes[] = [
+    {value: '1', viewValue: 'Enero'},
+    {value: '2', viewValue: 'Febrero'},
+    {value: '3', viewValue: 'Marzo'}
+  ];
+
   routes: Object[] = [{
       icon: 'library_books',
       route: '/unidad',
       title: 'unidades',
       description: 'Item description',
     }, {
-      icon: 'notifications_off',
+      icon: 'print',
       route: '/articulos',
       title: 'Articulos',
       description: 'Item description',
     }, {
-      icon: 'notifications_off',
+      icon: 'print',
       route: '/clientes',
       title: 'Clientes',
       description: 'Item description',

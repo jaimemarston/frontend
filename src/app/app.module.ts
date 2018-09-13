@@ -27,6 +27,8 @@ import {CdkTableModule} from '@angular/cdk/table';
 import { ClientesComponent } from './clientes/clientes.component';
 import { UnidadComponent } from './unidad/unidad.component';
 import { TransporteComponent } from './transporte/transporte.component';
+import { AddComponent } from './clientes/add/add.component';
+import { EditComponent } from './clientes/edit/edit.component';
 
 
 
@@ -39,6 +41,8 @@ import { TransporteComponent } from './transporte/transporte.component';
     ClientesComponent,
     UnidadComponent,
     TransporteComponent,
+    AddComponent,
+    EditComponent,
 
   ],
   imports: [
@@ -66,12 +70,14 @@ import { TransporteComponent } from './transporte/transporte.component';
     MatTabsModule,
     FormsModule,
     MatPaginatorModule,
+    MatDialogModule,
   ],
   exports: [
     MatButtonModule, 
     MatIconModule, 
     MatMenuModule,
     MatToolbarModule,
+    MatDialogModule,
   ],    
   providers: [dataService],
   bootstrap: [AppComponent]
