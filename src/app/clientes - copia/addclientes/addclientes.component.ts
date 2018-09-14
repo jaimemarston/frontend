@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
 import { MatTableDataSource, MatSort, MatTabsModule, MatPaginator, MatDialog } from '@angular/material';
-import {SelectionModel} from '@angular/cdk/collections';
+import { SelectionModel} from '@angular/cdk/collections';
 import { Clientes } from './../../dataservice/clientes';
 import { dataService } from './../../dataservice/data.service';
 import { Injectable } from '@angular/core';
@@ -11,12 +11,12 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  selector: 'app-addclientes',
+  templateUrl: './addclientes.component.html',
+  styleUrls: ['./addclientes.component.scss']
 })
 
-export class AddComponent implements OnInit {
+export class AddClientesComponent implements OnInit {
     registerForm: FormGroup;
     submitted = false;
 
@@ -26,7 +26,7 @@ export class AddComponent implements OnInit {
       private dataService: dataService) { }
 
     ngOnInit() {
-        
+
         this.registerForm = this.formBuilder.group({
             nombre: ['', Validators.required],
             codigo: ['', Validators.required]
@@ -38,12 +38,12 @@ export class AddComponent implements OnInit {
 
     onSubmit() {
         this.submitted = true;
-        
+
         // stop here if form is invalid
         if (this.registerForm.invalid) {
             return;
         }
-        
+
         // Graba info registrada en formulario
         this.dataService.agregaClientes(this.registerForm.value);
         console.log("Form Submitted!");

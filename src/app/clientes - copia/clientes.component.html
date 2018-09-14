@@ -10,7 +10,7 @@
           <button  mat-icon-button color="accent">
           <mat-icon  color="primary" class="example-icon" style="padding: 10px;">print</mat-icon></button>
 
-          <button ng-click="isValid = !isValid" mat-icon-button (click)="addRecord()" color="accent">
+          <button ng-click="myTabIndex = 2" mat-icon-button (click)="addRecord()" color="accent">
           <mat-icon  color="primary" class="example-icon" style="padding: 10px;">add_circle</mat-icon></button>
      
           <button mat-icon-button (click)="changeTab()" color="accent">
@@ -29,35 +29,16 @@
             </div>
 
         <mat-table [dataSource]="clientes" class="mat-elevation-z8">
-
-
-
-
               <li *ngFor="let book of promisclientes | async" >
               </li>
           <!--- Note that these columns can be defined in any order.
                 The actual rendered columns are set as a property on the row definition" -->
-
-
-      <!-- Checkbox Column -->
-      <ng-container matColumnDef="select">
-          <mat-header-cell *matHeaderCellDef>
-            <mat-checkbox >
-            </mat-checkbox>
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row">
-            <mat-checkbox >
-            </mat-checkbox>
-          </mat-cell>
-        </ng-container>
-
-          
-          <!-- Name Column -->
+          <!-- Position Column -->
           <ng-container matColumnDef="id">
             <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
           </ng-container>
-          
+          <!-- Name Column -->
           <ng-container matColumnDef="nombre">
             <mat-header-cell *matHeaderCellDef> nombre </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
@@ -72,7 +53,7 @@
           <ng-container matColumnDef="options">
                   <mat-header-cell *matHeaderCellDef> Options </mat-header-cell>
                   <mat-cell *matCellDef="let row">
-                        <button  (click)="editRecord(row.id)" mat-icon-button color="accent">
+                        <button (click)="editRecord(row.id)" mat-icon-button color="accent">
                         <mat-icon style="color: steelblue;"  aria-label="Edit">edit</mat-icon>
                        </button>
                        
@@ -101,17 +82,8 @@
 <br />
 </mat-tab>
   <mat-tab label="Detalle">
-
-      
- 
-  
-      <div *ngIf="!isValid">
-          <app-addclientes></app-addclientes>
-      </div>
-      <div *ngIf="isValid">
-          <app-editclientes></app-editclientes>
-      </div>
-      
+      <app-addclientes></app-addclientes>
+      <!--<app-editclientes></app-editclientes>-->
   </mat-tab>
 </mat-tab-group>
 </mat-card>

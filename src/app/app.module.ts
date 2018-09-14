@@ -27,8 +27,9 @@ import {CdkTableModule} from '@angular/cdk/table';
 import { ClientesComponent } from './clientes/clientes.component';
 import { UnidadComponent } from './unidad/unidad.component';
 import { TransporteComponent } from './transporte/transporte.component';
-import { AddComponent } from './clientes/add/add.component';
-import { EditComponent } from './clientes/edit/edit.component';
+import { AddClientesComponent } from './clientes/addclientes/addclientes.component';
+import { EditClientesComponent } from './clientes/editclientes/editclientes.component';
+import { DeleclienteComponent } from './clientes/delecliente/delecliente.component';
 
 
 
@@ -41,8 +42,9 @@ import { EditComponent } from './clientes/edit/edit.component';
     ClientesComponent,
     UnidadComponent,
     TransporteComponent,
-    AddComponent,
-    EditComponent,
+    AddClientesComponent,
+    EditClientesComponent,
+    DeleclienteComponent,
 
   ],
   imports: [

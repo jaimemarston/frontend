@@ -9,7 +9,7 @@ import { AddClientesComponent } from './addclientes/addclientes.component';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
-import {Router} from "@angular/router";
+
 
 
 /**
@@ -25,10 +25,9 @@ import {Router} from "@angular/router";
 export class ClientesComponent  {
 
 
-  displayedColumns: string[] = ['select', 'id', 'nombre', 'codigo', 'options' ];
+  displayedColumns: string[] = ['id', 'nombre', 'codigo', 'options' ];
   private AddClientesComponent = AddClientesComponent;
   private selectedTab = 0;
-  private router: Router;
 
   promisclientes: Promise<Clientes[]>
   clientes: Clientes[];
@@ -43,7 +42,6 @@ export class ClientesComponent  {
 
   constructor(
     private dataService: dataService,
-    private router: Router,
     public dialog: MatDialog,
     ) { }
 
@@ -58,8 +56,6 @@ export class ClientesComponent  {
     this.selectedTab = 1;
     console.log(recordId);
     this.dataService.getClientesid(recordId);
-    /*this.router.navigate(['edit']);*/
-
   }
 
   /*

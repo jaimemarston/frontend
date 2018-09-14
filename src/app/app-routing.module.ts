@@ -4,7 +4,8 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { TransporteComponent } from './transporte/transporte.component';
 import { UnidadComponent } from './unidad/unidad.component';
-import { AddComponent } from './clientes/add/add.component';
+import { AddClientesComponent } from './clientes/addclientes/addclientes.component';
+import { EditClientesComponent } from './clientes/editclientes/editclientes.component';
 
 
 const routes: Routes = [
@@ -23,9 +24,12 @@ const routes: Routes = [
             },
             {
                 path: 'add',
-                component: AddComponent,
+                component: AddClientesComponent,
             },
-
+            {
+                path: 'edit',
+                component: EditClientesComponent,
+            },
             ]
         },
 
