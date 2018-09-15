@@ -19,8 +19,7 @@ import { HttpModule } from '@angular/http';
     BrowserAnimationsModule,
     LayoutModule,
     HttpClientModule,
-    CoreModule,
-    HttpModule
+    CoreModule
   ],
   bootstrap: [AppComponent]
 })

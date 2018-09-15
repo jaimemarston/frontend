@@ -12,9 +12,16 @@ import {
   MatTableModule,
   MatTabsModule,
   MatToolbarModule,
-  MatCheckboxModule, MatPaginatorModule, MatDialogModule, MatInputModule,
+  MatCheckboxModule,
+  MatPaginatorModule,
+  MatDialogModule,
+  MatInputModule,
+  MatSnackBarModule,
+  MatButtonModule,
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditClientesComponent } from './editclientes/editclientes.component';
 
 const routes: Routes = [
   {
@@ -39,9 +46,12 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatDialogModule,
     MatInputModule,
+    MatSnackBarModule,
+    MatButtonModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ClientesComponent, AddClientesComponent, DeleclienteComponent]
+  declarations: [ClientesComponent, AddClientesComponent, EditClientesComponent, DeleclienteComponent],
+  providers: [{provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}]
 })
 export class ClientesModule {
 }

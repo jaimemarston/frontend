@@ -3,6 +3,7 @@ import { Headers, Http } from '@angular/http';
 
 import { Clientes } from './clientes';
 import { Unidad } from './unidad';
+import { HttpClient } from '@angular/common/http';
 
 export interface IDataItem {
   name: string;
@@ -10,7 +11,7 @@ export interface IDataItem {
   price: number;
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class DataService {
 
   constructor(private http: Http) {
@@ -20,7 +21,7 @@ export class DataService {
   url = 'http://localhost:8000/';
 
   getClientes(): Promise<Clientes[]> {
-    return this.http.get(this.url + 'cliente?format=json', {headers: this.headers})
+    return this.http.get(this.url + 'cliente', {headers: this.headers})
       .toPromise()
       .then(response => response.json() as Clientes[]);
   }

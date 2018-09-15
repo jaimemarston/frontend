@@ -1,0 +1,50 @@
+/* Buenas practicas:
+
+CLASES:
+	siempre con camelCase (que empiecen con mayuscula)
+	gustosPersona: GustosPersona
+	gustosPersona = new GustosPersona
+
+
+INTERFACES:
+	son clases abstractas que no tienen validez con la información, pero se maneja como buenas prácticas para
+	saber el modelo de una variable.
+
+MODULES:
+	ROUTING LAZY LOAD: dentro del routing se crean rutas que llaman a modulos completos.
+	{
+        	path: 'clientes',
+	        loadChildren: './modules/clientes/clientes.module#ClientesModule'
+      	},
+
+
+ANGULAR CLI
+    cliente de angular,
+
+INYECCION DE DEPDENCIAS
+
+          perro = new Perro(animal) #sin inyección de dependencia
+          perro:Perro con inyección de depndencia
+
+STATIC:
+          cuando es static no es necesario instancia la clase
+
+GENERICS:
+          https://www.typescriptlang.org/docs/handbook/generics.html
+ECMASCRIPTS
+          https://medium.freecodecamp.org/here-are-examples-of-everything-new-in-ecmascript-2016-2017-and-2018-d52fa3b5a70e
+*/
+
+// template string
+
+const BASEURL = 'HOLA'
+const id = 1
+const id2 = 2
+const sinTemplateString = BASEURL + 'cliente' + id.toString() + id2.toString();
+const conTemplateString = `${BASEURL}cliente${id}`;
++'1'
+`${1}`
+
+
+
+// ACORDARSE DE DESTRUIR LOS SUBSCRIBES
