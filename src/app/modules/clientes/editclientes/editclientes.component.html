@@ -1,0 +1,17 @@
+<form [formGroup]="registerForm">
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput formControlName="codigo" class="form-control" placeholder="Codigo">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="nombre" class="form-control" placeholder="Nombre"/>
+    </mat-form-field>
+    <br>
+    <br>
+    <div class="form-group">
+      <button [disabled]="!registerForm.valid" *ngIf="id" (click)="saveForm()" mat-raised-button color="warn">Editar</button>
+      <button [disabled]="!registerForm.valid" *ngIf="!id" (click)="saveForm(true)" mat-raised-button color="warn">Agregar y Nuevo</button>
+    </div>
+  </div>
+</form>
+<button (click)="onBack()">VOLVER</button>

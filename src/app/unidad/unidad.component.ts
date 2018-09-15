@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { dataService } from './../dataservice/data.service';
+import { DataService } from './../dataservice/data.service';
 import { Unidad } from './../dataservice/unidad';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
@@ -21,7 +21,7 @@ export class UnidadComponent implements OnInit {
 	unidades: Unidad[];
   errorMessage: String;
  
-  constructor(private dataService: dataService) { }
+  constructor(private dataService: DataService) { }
 
    ngOnInit(): void {
     this.promiseunidades = this.dataService.getUnidad();
