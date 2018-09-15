@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataSource } from '@angular/cdk/table';
-import { MatTableDataSource, MatSort, MatTabsModule, MatPaginator, MatDialog } from '@angular/material';
-import { SelectionModel} from '@angular/cdk/collections';
-import { Clientes } from './../../dataservice/clientes';
-import { dataService } from './../../dataservice/data.service';
-import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Clientes } from '../../../dataservice/clientes';
+import { DataService } from '../../../dataservice/data.service';
 
 
 @Component({
@@ -26,11 +20,11 @@ export class EditClientesComponent implements OnInit {
 
     constructor(
       private formBuilder: FormBuilder,
-      private dataService: dataService) { }
+      private dataService: DataService) { }
 
-    ngOnInit() {
+    ngOnInit() {}
 /*
-      this.promisclientes = this.dataService.getClientesid(id);
+      this.promisclientes = this.DataService.getClientesid(id);
       this.promisclientes.then(
       clientes => this.clientes = clientes,
       error => this.errorMessage = <any>error);
@@ -54,7 +48,7 @@ export class EditClientesComponent implements OnInit {
         }
 
         // Graba info registrada en formulario
-        //this.dataService.agregaClientes(this.registerForm.value);
+        //this.DataService.agregaClientes(this.registerForm.value);
         console.log("Form edit!");
        // this.registerForm.reset();
         /*alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))*/

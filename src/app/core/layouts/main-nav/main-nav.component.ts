@@ -2,13 +2,14 @@ import { Component, HostBinding, ChangeDetectionStrategy, ChangeDetectorRef, OnD
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {MediaMatcher} from '@angular/cdk/layout';
+import { MediaMatcher } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 
 export interface Food {
   value: string;
   viewValue: string;
 }
+
 export interface Mes {
   value: string;
   viewValue: string;
@@ -38,30 +39,30 @@ export class MainNavComponent {
   ];
 
   routes: Object[] = [{
-      icon: 'library_books',
-      route: '/unidad',
-      title: 'unidades',
-      description: 'Item description',
-    }, {
-      icon: 'print',
-      route: '/articulos',
-      title: 'Articulos',
-      description: 'Item description',
-    }, {
-      icon: 'print',
-      route: '/clientes',
-      title: 'Clientes',
-      description: 'Item description',
-    }, {
-      icon: 'notifications_off',
-      route: '/transporte',
-      title: 'Transporte',
-      description: 'Item description',
-    },
+    icon: 'library_books',
+    route: '/unidad',
+    title: 'unidades',
+    description: 'Item description',
+  }, {
+    icon: 'print',
+    route: '/articulos',
+    title: 'Articulos',
+    description: 'Item description',
+  }, {
+    icon: 'print',
+    route: '/clientes',
+    title: 'Clientes',
+    description: 'Item description',
+  }, {
+    icon: 'notifications_off',
+    route: '/transporte',
+    title: 'Transporte',
+    description: 'Item description',
+  },
   ];
   /*https://stackblitz.com/edit/example-angular-material-toolbar-menu
   https://stackblitz.com/edit/angular-material-nested-menu-example*/
-  
+
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
@@ -71,4 +72,4 @@ export class MainNavComponent {
   }
 
 
-  }
+}

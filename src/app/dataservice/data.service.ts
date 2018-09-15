@@ -5,64 +5,58 @@ import { Clientes } from './clientes';
 import { Unidad } from './unidad';
 
 export interface IDataItem {
-  name: string,
-  description: string,
-  price: number
+  name: string;
+  description: string;
+  price: number;
 }
-@Injectable()
+
+@Injectable({providedIn: 'root'})
+export class DataService {
+
+  constructor(private http: Http) {
+  }
+
+  private headers = new Headers({'Content-Type': 'application/json'});
+  url = 'http://localhost:8000/';
+
+  getClientes(): Promise<Clientes[]> {
+    return this.http.get(this.url + 'cliente?format=json', {headers: this.headers})
+      .toPromise()
+      .then(response => response.json() as Clientes[]);
+  }
+
+  getClientesid(id: number): Promise<Clientes[]> {
+    const url = `${'http://localhost:8000/cliente'}/${id}`;
+    return this.http.get(url, {headers: this.headers})
+      .toPromise()
+      .then(() => null);
+  }
 
 
-export class dataService {
+  agregaClientes(user: Clientes) {
+    return this.http.post('http://localhost:8000/cliente', user, {headers: this.headers})
+      .toPromise();
+  }
 
-	constructor(private http: Http) {}
-	
-	private headers = new Headers({'Content-Type': 'application/json'});
-    url = 'http://localhost:8000/';
-		
-		getClientes(): Promise<Clientes[]> {
-			return this.http.get(this.url + 'cliente?format=json', {headers: this.headers})
-				.toPromise()
-				.then(response => response.json() as Clientes[])
-		}
-
-		getClientesid(id: number): Promise<Clientes[]> {
-			const url = `${"http://localhost:8000/cliente"}/${id}`;
-			console.log(url);
-			return this.http.get(url, {headers: this.headers})
-				.toPromise()
-				.then(() => null)
-		}
+  deleteCliente(id: number): Promise<void> {
+    const url = `${'http://localhost:8000/cliente'}/${id}`;
+    return this.http.delete(url, {headers: this.headers})
+      .toPromise()
+      .then(() => null);
+  }
 
 
-		agregaClientes(user: Clientes) {
-			
-			console.log(user);
-			return this.http.post('http://localhost:8000/cliente', user, {headers: this.headers})
-			.toPromise()
-			
-		}
-
-		deleteCliente(id: number): Promise<void> {
-			
-			const url = `${"http://localhost:8000/cliente"}/${id}`;
-			console.log(url);
-			return this.http.delete(url, {headers: this.headers})
-				.toPromise()
-				.then(() => null)
-		}
+  getUnidad(): Promise<Unidad[]> {
+    return this.http.get('http://localhost:8000/unidad?format=json', {headers: this.headers})
+      .toPromise()
+      .then(response => response.json() as Unidad[]);
+  }
 
 
-		getUnidad(): Promise<Unidad[]> {
-			return this.http.get('http://localhost:8000/unidad?format=json', {headers: this.headers})
-				.toPromise()
-				.then(response => response.json() as Unidad[])
-		}
-		
-
-		deleteDeposito(id: number): Promise<void> {
-			const url = `${"http://localhost:8000/deposito"}/${id}`;
-			return this.http.delete(url, {headers: this.headers})
-				.toPromise()
-				.then(() => null)
-		}
+  deleteDeposito(id: number): Promise<void> {
+    const url = `${'http://localhost:8000/deposito'}/${id}`;
+    return this.http.delete(url, {headers: this.headers})
+      .toPromise()
+      .then(() => null);
+  }
 }

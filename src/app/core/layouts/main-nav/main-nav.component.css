@@ -1,15 +1,13 @@
-
 .mat-sidenav {
   width: 200px;
 }
 
-
 .example-toolbar1 {
   height: 8%;
-  background:#ff6d00;
+  background: #ff6d00;
   /*font:400 20px/32px Roboto,Helvetica Neue,sans-serif;*/
   /*background:#ffbf00;*/
-  color: hsla(0,0%,100%,.87);
+  color: hsla(0, 0%, 100%, .87);
 }
 
 .sidenav-container {
@@ -22,6 +20,7 @@
   left: 0;
   right: 0;
 }
+
 .sidenav {
   width: 250px;
 }
@@ -36,11 +35,13 @@
   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
   z-index: 2;
 }
+
 .example-toolbar {
 
-    height: 7%;
+  height: 7%;
 
 }
+
 .example-sidenav-container {
   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
@@ -52,6 +53,7 @@
      `<body>` to be our scrolling element for mobile layouts. */
   flex: 1 0 auto;
 }
+
 .example-container {
   display: flex;
   flex-direction: column;
@@ -77,6 +79,7 @@ h1.example-app-name {
      `<body>` to be our scrolling element for mobile layouts. */
   flex: 1 0 auto;
 }
+
 .example-icon {
   padding: 0 14px;
 }
