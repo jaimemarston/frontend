@@ -5,8 +5,9 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule } from '@angular/material';
 import { CoreModule } from './core/core.module';
-import { HttpModule } from '@angular/http';
+
 
 
 @NgModule({
@@ -19,6 +20,13 @@ import { HttpModule } from '@angular/http';
     BrowserAnimationsModule,
     LayoutModule,
     HttpClientModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
     CoreModule
   ],
   bootstrap: [AppComponent]

@@ -18,6 +18,8 @@ import {
   MatInputModule,
   MatSnackBarModule,
   MatButtonModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -48,10 +50,13 @@ const routes: Routes = [
     MatInputModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatDatepickerModule,
+    MatDatepickerModule,        // <----- import(must)
+    MatNativeDateModule,         // <----- import(optional)
     RouterModule.forChild(routes)
   ],
   declarations: [ClientesComponent, AddClientesComponent, EditClientesComponent, DeleclienteComponent],
-  providers: [{provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}]
+  providers: [{provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}]
 })
 export class ClientesModule {
 }

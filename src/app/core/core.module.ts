@@ -9,7 +9,8 @@ import {
   MatToolbarModule,
   MatFormFieldModule,
   MatSelectModule,
-  MatListModule
+  MatListModule,
+  MatMenuModule
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
 
@@ -24,6 +25,7 @@ import { RouterModule } from '@angular/router';
     MatOptionModule,
     MatSelectModule,
     MatListModule,
+    MatMenuModule,
     RouterModule
   ],
   declarations: [MainNavComponent],

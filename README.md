@@ -6,22 +6,33 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+# Pendientes
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+```
+CRUD
+├── Eliminar desde pantalla de Editar. Retirar tacho de Datatable
+├── Titulo de Formulario segun menu
+├── reporte en PDF y EXCEL
+└── Activar Filtro de Pantalla
+├── Error en check se descuadra
+├── Activar Filtro mes y periodo
+├── Activar filtro estado(elimnador marcarlo como 1 activo cero)
+└── Activar Orden en Datatable
+├── Grabar Fecha
+├── Grabar Lista seleccionada
+└── Enlazar Maestro y Detalle
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+BUG
+├── Error en CRUD aveces no graba edicion
+├── 
+├── .
+└── .
+├── .
+├── .
+├── .
+└── .
+ 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```

@@ -1,17 +1,137 @@
 <form [formGroup]="registerForm">
   <div class="example-container">
-    <mat-form-field>
-      <input matInput formControlName="codigo" class="form-control" placeholder="Codigo">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput formControlName="nombre" class="form-control" placeholder="Nombre"/>
-    </mat-form-field>
-    <br>
-    <br>
-    <div class="form-group">
-      <button [disabled]="!registerForm.valid" *ngIf="id" (click)="saveForm()" mat-raised-button color="warn">Editar</button>
-      <button [disabled]="!registerForm.valid" *ngIf="!id" (click)="saveForm(true)" mat-raised-button color="warn">Agregar y Nuevo</button>
+    <table class="example-full-width" cellspacing="0">
+      <td>
+        <mat-form-field>
+          <input matInput formControlName="codigo" class="form-control" placeholder="Codigo">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <input matInput formControlName="nombre" class="form-control" placeholder="Nombre" />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <input matInput formControlName="ruc" class="form-control" placeholder="RUC" />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <input matInput formControlName="telefono1" class="form-control" placeholder="Telefono1" />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <input matInput formControlName="telefono2" class="form-control" placeholder="Telefono2" />
+        </mat-form-field>
+      </td>
+    </table>
+    <table class="example-full-width" cellspacing="0">
+      <mat-form-field style="width: 500px;">
+        <input matInput formControlName="direccion" class="form-control" placeholder="Direccion" />
+      </mat-form-field>
+      <td></td>
+      <mat-form-field style="width: 300px;">
+        <input matInput formControlName="correo" class="form-control" placeholder="Correo" />
+      </mat-form-field>
+      <td></td>
+    </table>
+
+    <table class="example-full-width" cellspacing="0">
+      <td></td>
+      <mat-form-field>
+        <input matInput formControlName="contacto" class="form-control" placeholder="Contacto" />
+      </mat-form-field>
+      <td></td>
+      <mat-form-field>
+        <input matInput formControlName="telcontacto" class="form-control" placeholder="Telf. contacto" />
+      </mat-form-field>
+      <td></td>
+      <mat-form-field>
+        <input matInput formControlName="paginaweb" class="form-control" placeholder="Pagina Web" />
+      </mat-form-field>
+      <td></td>
+    </table>
+    <table class="example-full-width" cellspacing="0">
+      <mat-form-field>
+        <input matInput formControlName="banco_nombre1" class="form-control" placeholder="banco_nombre1" />
+      </mat-form-field>
+      <td></td>
+      <mat-form-field>
+        <input matInput formControlName="banco_cuenta1" class="form-control" placeholder="banco_cuenta1" />
+      </mat-form-field>
+      <td></td>
+      <mat-form-field>
+        <input matInput formControlName="banco_moneda1" class="form-control" placeholder="banco_moneda1" />
+      </mat-form-field>
+      <td></td>
+    </table>
+    <table class="example-full-width" cellspacing="0">
+      <mat-form-field>
+        <input matInput formControlName="banco_nombre2" class="form-control" placeholder="banco_nombre2" />
+      </mat-form-field>
+      <td></td>
+      <mat-form-field>
+        <input matInput formControlName="banco_cuenta2" class="form-control" placeholder="banco_cuenta2" />
+      </mat-form-field>
+      <td></td>
+      <mat-form-field>
+        <input matInput formControlName="banco_moneda2" class="form-control" placeholder="banco_moneda2" />
+      </mat-form-field>
+      <td></td>
+    </table>
+    <table class="example-full-width" cellspacing="0">
+      <mat-form-field style="width:45%">
+        <input matInput formControlName="fechanac" class="form-control" [matDatepicker]="picker" placeholder="Fecha Nac.">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <td></td>
+      <mat-form-field style="width:45%">
+        <input matInput formControlName="fechanac" class="form-control" placeholder="fechanac" />
+      </mat-form-field>
+      <td></td>
+      <mat-form-field style="width:45%">
+        <input matInput formControlName="fechaini" class="form-control" placeholder="fechaini" />
+      </mat-form-field>
+      <td></td>
+      <mat-form-field style="width:45%">
+        <input matInput formControlName="fechafin" class="form-control" placeholder="fechafin" />
+      </mat-form-field>
+      <td></td>
+    </table>
+    <table class="example-full-width" cellspacing="0">
+
+
+      <mat-form-field>
+        <input matInput formControlName="tipocc" class="form-control" placeholder="tipocc" />
+      </mat-form-field>
+      <td></td>
+      <mat-form-field>
+        <input matInput formControlName="destipocc" class="form-control" placeholder="destipocc" />
+      </mat-form-field>
+      <td></td>
+      <mat-form-field>
+        <input matInput formControlName="condcompvent" class="form-control" placeholder="condcompvent" />
+      </mat-form-field>
+      <td></td>
+    </table>
+
+    <br><br>
+    <div class="form-group" >
+      <button style="margin-right: 8px" mat-raised-button color="warn" matTooltip="Grabar info" [disabled]="!registerForm.valid" *ngIf="id" (click)="saveForm()">
+        <mat-icon>save</mat-icon>
+      </button>
+      
+      <button style="margin-right: 8px" mat-raised-button color="accent" matTooltip="Grabar Nuevo" [disabled]="!registerForm.valid" *ngIf="!id"
+        (click)="saveForm(true)">
+        <mat-icon>done</mat-icon>
+      </button>
+
+      <button style="margin-right: 8px" mat-raised-button color="primary" matTooltip="Grabar Nuevo" (click)="onBack()">
+        <mat-icon>undo</mat-icon>
+      </button>
     </div>
   </div>
 </form>
-<button (click)="onBack()">VOLVER</button>

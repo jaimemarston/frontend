@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatSnackBar, MatTabChangeEvent, MatTableDataSource } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatSnackBar, MatTabChangeEvent, MatTableDataSource, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { Clientes } from '../../dataservice/clientes';
 import { DataService } from '../../dataservice/data.service';
@@ -19,7 +19,10 @@ import { SelectionModel } from '@angular/cdk/collections';
 
 
 export class ClientesComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'id', 'nombre', 'codigo', 'options'];
+ /* displayedColumns: string[] = ['select', 'id', 'codigo', 'ruc' ,'nombre', 'telefono1', 'correo', 'options'];*/
+  displayedColumns: string[] = ['select', 'codigo', 'ruc', 'nombre', 'telefono1', 'correo', 'options'];
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   clientes: Array<IClientes>;
   dataSource = new MatTableDataSource<IClientes>();
   errorMessage: String;
@@ -49,6 +52,8 @@ export class ClientesComponent implements OnInit {
 
         // this.clientes = response.filter(v => v.id < 93) filtrando el array;
         console.log(this.clientes);
+        this.dataSource.paginator = this.paginator;
+        this.paginator._intl.itemsPerPageLabel= 'Item por Pagina:';
       });
   }
 
@@ -97,6 +102,10 @@ export class ClientesComponent implements OnInit {
       this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
+
+  openPrint() {
+    window.print();
+  }
 
   /**
    * async await sirve para esperar que una promesa sea cumplida

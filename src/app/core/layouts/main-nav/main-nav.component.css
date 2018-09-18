@@ -1,10 +1,15 @@
+
+/*  Ancho menu lateral */
+
 .mat-sidenav {
   width: 200px;
 }
 
+/*  menu Superior */
 .example-toolbar1 {
-  height: 8%;
-  background: #ff6d00;
+  height: 6%;
+  background:#d35400;
+  /*background: #ff6d00;*/
   /*font:400 20px/32px Roboto,Helvetica Neue,sans-serif;*/
   /*background:#ffbf00;*/
   color: hsla(0, 0%, 100%, .87);
@@ -20,11 +25,11 @@
   left: 0;
   right: 0;
 }
-
+ /*
 .sidenav {
   width: 250px;
 }
-
+ */
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
@@ -32,10 +37,10 @@
 
 .example-is-mobile .example-toolbar {
   position: fixed;
-  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-  z-index: 2;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past.
+  z-index: 2; */
 }
-
+/*
 .example-toolbar {
 
   height: 7%;
@@ -44,9 +49,10 @@
 
 .example-sidenav-container {
   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. 
   flex: 1;
 }
+*/
 
 .example-is-mobile .example-sidenav-container {
   /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
@@ -87,4 +93,8 @@ h1.example-app-name {
 
 .example-spacer {
   flex: 1 1 auto;
+}
+
+.pantallafiltro{
+  font-size: 12px;
 }

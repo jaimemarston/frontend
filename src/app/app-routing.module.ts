@@ -11,66 +11,9 @@ const routes: Routes = [
         path: 'clientes',
         loadChildren: './modules/clientes/clientes.module#ClientesModule'
       },
-      {
-        path: 'unidades',
-        loadChildren: './modules/unidades/unidades.module#UnidadesModule'
-      },
-      {
-        path: 'transportes',
-        loadChildren: './modules/transportes/transportes.module#TransportesModule'
-      },
-      {
-        path: 'articulos',
-        loadChildren: './modules/articulos/articulos.module#ArticulosModule'
-      }
+
     ]
-    // children: [
-    //   {
-    //     path: 'clientes',
-    //     children: [
-    //       {
-    //         path: '',
-    //         component: ClientesComponent,
-    //       },
-    //       {
-    //         path: 'add',
-    //         component: AddClientesComponent,
-    //       },
-    //       {
-    //         path: 'edit',
-    //         component: EditClientesComponent,
-    //       },
-    //     ]
-    //   },
-    //
-    //   {
-    //     path: 'transporte',
-    //     children: [
-    //
-    //       {
-    //         path: '',
-    //         component: TransporteComponent,
-    //       },
-    //
-    //
-    //     ]
-    //   },
-    //
-    //   {
-    //     path: 'unidad',
-    //     children: [
-    //
-    //       {
-    //         path: '',
-    //         component: UnidadComponent,
-    //       },
-    //
-    //
-    //     ]
-    //   },
-    //
-    //
-    // ],
+
   }
 ];
 

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
 import { Clientes } from './clientes';
-import { Unidad } from './unidad';
 import { HttpClient } from '@angular/common/http';
 
 export interface IDataItem {
@@ -46,12 +45,6 @@ export class DataService {
       .then(() => null);
   }
 
-
-  getUnidad(): Promise<Unidad[]> {
-    return this.http.get('http://localhost:8000/unidad?format=json', {headers: this.headers})
-      .toPromise()
-      .then(response => response.json() as Unidad[]);
-  }
 
 
   deleteDeposito(id: number): Promise<void> {
