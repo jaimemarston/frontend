@@ -58,7 +58,7 @@ export class MainNavComponent {
   }, {
     icon: 'print',
     route: '/articulos',
-    title: 'Articulos',
+    title: 'Servicios',
     description: 'Item description',
 
   }, {
@@ -75,7 +75,7 @@ export class MainNavComponent {
   },
   {
     icon: 'ballot',
-    route: '/unidad',
+    route: '/cotizacion',
     title: 'Cotizaciones',
     description: 'Item description',
   },

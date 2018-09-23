@@ -1,37 +1,40 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatDialog, MatSnackBar, MatTabChangeEvent, MatTableDataSource, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
-import { ClienteService } from '../../core/services/cliente.service';
-import { IClientes } from '../../core/interfaces/clientes.interface';
+import { Cotizacion } from '../../../dataservice/cotizacion';
+import { DataService } from '../../../dataservice/data.service';
+import { CotizaciondetalleService } from '../../../core/services/cotizaciondetalle.service';
+import { ICotizaciondetalle } from '../../../core/interfaces/cotizacion.interface';
 import { SelectionModel } from '@angular/cdk/collections';
-
 
 /**
  * @title Basic use of `<table mat-table>`
  */
 @Component({
-  selector: 'app-clientes',
-  templateUrl: './clientes.component.html',
-  styleUrls: ['./../../app.component.scss']
+  selector: 'app-cotizaciondetalle',
+  templateUrl: './cotizaciondetalle.component.html',
+  styleUrls: ['./../../../app.component.scss']
+
 })
 
+export class CotizaciondetalleComponent implements OnInit {
 
-export class ClientesComponent implements OnInit {
- /* displayedColumns: string[] = ['select', 'id', 'codigo', 'ruc' ,'nombre', 'telefono1', 'correo', 'options'];*/
-  displayedColumns: string[] = ['select', 'codigo', 'ruc', 'nombre', 'telefono1', 'correo', 'options'];
+  displayedColumns: string[] = ['select', 'codigo', 'nombre', 'options'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  clientes: Array<IClientes>;
-  dataSource = new MatTableDataSource<IClientes>();
+  cotizacion: Array<ICotizaciondetalle>;
+  dataSource = new MatTableDataSource<ICotizaciondetalle>();
   errorMessage: String;
   selectedId: number;
   edit: boolean;
 
   /** checkbox datatable */
-  selection = new SelectionModel<IClientes>(true, []);
+  selection = new SelectionModel<ICotizaciondetalle>(true, []);
+
+  @Input() detail: any;
 
   constructor(
-    private clienteService: ClienteService,
+    private cotizacionService: CotizaciondetalleService,
     private router: Router,
     public dialog: MatDialog,
     private snackBar: MatSnackBar
@@ -39,34 +42,34 @@ export class ClientesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getClientes();
+    this.getCotizacion();
   }
 
-  getClientes(): void {
-    this.clienteService.getClientes()
+  getCotizacion(): void {
+    this.cotizacionService.getCotizaciones()
       .subscribe(response => {
-        this.clientes = response;
-        this.dataSource.data = this.clientes;
+        this.cotizacion = response;
+        this.dataSource.data = this.cotizacion;
 
-        // this.clientes = response.filter(v => v.id < 93) filtrando el array;
-        console.log(this.clientes);
+
+        console.log(this.cotizacion);
         this.dataSource.paginator = this.paginator;
-        this.paginator._intl.itemsPerPageLabel= 'Item por Pagina:';
+        // this.paginator._intl.itemsPerPageLabel = 'Item por Pagina:';
       });
   }
 
   delete(id: number): void {
     this.selectedId = id;
 
-    this.deleteClient();
+    this.deleteCotizacion();
 
   }
 
-  deleteClient(): void {
-    this.clienteService.deleteCliente(this.selectedId)
+  deleteCotizacion(): void {
+    this.cotizacionService.deleteCotizacion(this.selectedId)
       .subscribe(response => {
         console.log(response);
-        this.getClientes();
+        this.getCotizacion();
       });
   }
 
@@ -84,8 +87,8 @@ export class ClientesComponent implements OnInit {
     this.edit = false;
   }
 
-  updateDataTable(data: IClientes): void {
-    this.getClientes();
+  updateDataTable(data: ICotizaciondetalle): void {
+    this.getCotizacion();
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -113,10 +116,10 @@ export class ClientesComponent implements OnInit {
   async deleteAllSelecteds() {
     const selecteds = this.selection.selected;
     for (let index = 0; index < selecteds.length; index++) {
-      await this.clienteService.deleteCliente(selecteds[index].id).toPromise();
+      await this.cotizacionService.deleteCotizacion(selecteds[index].id).toPromise();
       if (index === selecteds.length - 1) {
         this.snackBar.open('ELMINADOS TODOS');
-        this.getClientes();
+        this.getCotizacion();
       }
     }
   }

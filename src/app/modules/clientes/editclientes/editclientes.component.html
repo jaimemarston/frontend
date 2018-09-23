@@ -82,22 +82,24 @@
       <td></td>
     </table>
     <table class="example-full-width" cellspacing="0">
+      <!--
       <mat-form-field style="width:45%">
-        <input matInput formControlName="fechanac" class="form-control" [matDatepicker]="picker" placeholder="Fecha Nac.">
+        <input matInput formControlName="fechanac" type="date" class="form-control" [matDatepicker]="picker" placeholder="Fecha Nac.">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
+      -->
+      <mat-form-field style="width:65%">
+          <input matInput type="date" formControlName="fechanac" class="form-control" placeholder="Fechanac" />
+        </mat-form-field>
       <td></td>
-      <mat-form-field style="width:45%">
-        <input matInput formControlName="fechanac" class="form-control" placeholder="fechanac" />
+  
+      <mat-form-field style="width:65%">
+        <input matInput type="date" formControlName="fechaini" class="form-control" placeholder="Fechaini" />
       </mat-form-field>
       <td></td>
-      <mat-form-field style="width:45%">
-        <input matInput formControlName="fechaini" class="form-control" placeholder="fechaini" />
-      </mat-form-field>
-      <td></td>
-      <mat-form-field style="width:45%">
-        <input matInput formControlName="fechafin" class="form-control" placeholder="fechafin" />
+      <mat-form-field style="width:65%">
+        <input matInput type="date" formControlName="fechafin" class="form-control" placeholder="Fechafin" />
       </mat-form-field>
       <td></td>
     </table>

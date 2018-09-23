@@ -1,0 +1,38 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+
+<form [formGroup]="registerForm">
+  <div class="example-container">
+    <table class="example-full-width" cellspacing="0">
+      <td>
+        <mat-form-field>
+          <input matInput formControlName="codigo" class="form-control" placeholder="Codigo">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <input matInput formControlName="descripcion" class="form-control" placeholder="descripcion" />
+        </mat-form-field>
+      </td>
+      <td>
+         
+      <button style="margin-right: 8px" mat-raised-button color="warn" matTooltip="Grabar info" [disabled]="!registerForm.valid" *ngIf="id" (click)="saveForm()">
+        <mat-icon>save</mat-icon>
+      </button>
+      
+      <button style="margin-right: 8px" mat-raised-button color="accent" matTooltip="Grabar Nuevo" [disabled]="!registerForm.valid" *ngIf="!id"
+        (click)="saveForm(true)">
+        <mat-icon>done</mat-icon>
+      </button>
+
+      <button style="margin-right: 8px" mat-raised-button color="primary" matTooltip="Grabar Nuevo" (click)="onBack()">
+        <mat-icon>undo</mat-icon>
+      </button>
+    </table>
+  </div>
+</form>
+  </div>
+</div>
+</div>

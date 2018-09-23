@@ -2,12 +2,15 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ClienteService } from '../../../core/services/cliente.service';
 import { IClientes } from '../../../core/interfaces/clientes.interface';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import {MatSnackBar } from '@angular/material';
+
+
 
 @Component({
   selector: 'app-editclientes',
   templateUrl: './editclientes.component.html',
-  styleUrls: ['./editclientes.component.scss']
+  styleUrls: ['./editclientes.component.scss'],
+
 })
 
 export class EditClientesComponent implements OnInit {
@@ -116,6 +119,7 @@ export class EditClientesComponent implements OnInit {
   }
 
   saveForm(clear?: boolean): void {
+
     if (this.registerForm.valid) {
       this.saveClient();
       if (clear) {
@@ -128,7 +132,7 @@ export class EditClientesComponent implements OnInit {
 
   updateClient(): void {
     const data: IClientes = this.registerForm.getRawValue();
-    this.clienteService.updateCliente(this.id, data)
+      this.clienteService.updateCliente(this.id, data)
       .subscribe(response => {
         this.update.emit(response);
         this.snackBar.open('Registro agregado satisfactoriamente...!');

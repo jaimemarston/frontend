@@ -17,10 +17,13 @@ export class ClienteService {
     return this.http.get<Array<IClientes>>(ClientesEndpoint.rest)
   }
 
+
+
   getCliente(id: number): Observable<Clientes> {
     const url = `${ClientesEndpoint.rest}/${id}`;
     return this.http.get<Clientes>(url);
   }
+
 
   addClient(data: IClientes): Observable<IClientes> {
     return this.http.post<IClientes>(ClientesEndpoint.rest, data);
@@ -35,4 +38,6 @@ export class ClienteService {
     const url = `${ClientesEndpoint.rest}/${id}`;
     return this.http.delete(url);
   }
+
+  
 }

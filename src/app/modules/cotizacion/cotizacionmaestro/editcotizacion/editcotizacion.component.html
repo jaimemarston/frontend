@@ -1,0 +1,44 @@
+<form [formGroup]="registerForm">
+  <div class="example-container">
+    <table class="example-full-width" cellspacing="0">
+      <td>
+        <mat-form-field>
+          <input matInput formControlName="codigo" class="form-control" placeholder="Codigo">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <input matInput type="date" formControlName="fechadoc" class="form-control" placeholder="fecha" />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <input matInput formControlName="ruc" class="form-control" placeholder="ruc" />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <input matInput formControlName="desruc" class="form-control" placeholder="desruc" />
+        </mat-form-field>
+      </td>
+      <td>
+      
+    </table>
+
+    <br><br>
+    <div class="form-group" >
+      <button style="margin-right: 8px" mat-raised-button color="warn" matTooltip="Grabar info" [disabled]="!registerForm.valid" *ngIf="id" (click)="saveForm()">
+        <mat-icon>save</mat-icon>
+      </button>
+      
+      <button style="margin-right: 8px" mat-raised-button color="accent" matTooltip="Grabar Nuevo" [disabled]="!registerForm.valid" *ngIf="!id"
+        (click)="saveForm(true)">
+        <mat-icon>done</mat-icon>
+      </button>
+
+      <button style="margin-right: 8px" mat-raised-button color="primary" matTooltip="Grabar Nuevo" (click)="onBack()">
+        <mat-icon>undo</mat-icon>
+      </button>
+    </div>
+  </div>
+</form>

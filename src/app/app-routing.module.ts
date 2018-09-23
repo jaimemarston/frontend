@@ -11,7 +11,10 @@ const routes: Routes = [
         path: 'clientes',
         loadChildren: './modules/clientes/clientes.module#ClientesModule'
       },
-
+      {
+        path: 'cotizacion',
+        loadChildren: './modules/cotizacion/cotizacion.module#CotizacionModule'
+      },
     ]
 
   }
