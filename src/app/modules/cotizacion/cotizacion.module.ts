@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CotizacionComponent } from './Cotizacion.component';
+import { CotizacionComponent } from './cotizacion.component';
 import { RouterModule, Routes } from '@angular/router';
 import {
   MatCardModule,

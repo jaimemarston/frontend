@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CotizacionEndpoint,ClientesdirecciondetailEndpoint } from '../endpoints/cotizacion.endpoint';
+import { CotizacionEndpoint, ClientesdirecciondetailEndpoint } from '../endpoints/cotizacion.endpoint';
 import { Observable } from 'rxjs';
 import { Cotizacion } from '../../dataservice/cotizacion';
-import { ICotizacion } from '../interfaces/Cotizacion.interface';
+import { ICotizacion } from '../interfaces/cotizacion.interface';
 import { filter, map } from 'rxjs/operators';
 
 @Injectable({
