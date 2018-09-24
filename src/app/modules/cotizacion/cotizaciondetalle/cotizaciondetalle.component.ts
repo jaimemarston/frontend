@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { MatDialog, MatSnackBar, MatTabChangeEvent, MatTableDataSource, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
 import { Cotizacion } from '../../../dataservice/cotizacion';
@@ -18,6 +18,22 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 
 export class CotizaciondetalleComponent implements OnInit {
+  _cotizacionesDetalle: Array<ICotizaciondetalle>;
+  get cotizacionesDetalle(): Array<ICotizaciondetalle> {
+    return this._cotizacionesDetalle;
+  }
+
+  @Input() set cotizacionesDetalle(data: Array<ICotizaciondetalle>) {
+    this._cotizacionesDetalle = data;
+    console.log(this.cotizacionesDetalle);
+    this.dataSource.data = this.cotizacionesDetalle;
+  }
+
+  @Input() detail: any;
+
+  @Input() idMaster: number;
+
+  @Output() updated: EventEmitter<any> = new EventEmitter();
 
   displayedColumns: string[] = ['select', 'codigo', 'nombre', 'options'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -31,8 +47,6 @@ export class CotizaciondetalleComponent implements OnInit {
   /** checkbox datatable */
   selection = new SelectionModel<ICotizaciondetalle>(true, []);
 
-  @Input() detail: any;
-
   constructor(
     private cotizacionService: CotizaciondetalleService,
     private router: Router,
@@ -42,7 +56,8 @@ export class CotizaciondetalleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCotizacion();
+    // this.getCotizacion();
+    this.dataSource.data = this.cotizacionesDetalle;
   }
 
   getCotizacion(): void {
@@ -88,7 +103,7 @@ export class CotizaciondetalleComponent implements OnInit {
   }
 
   updateDataTable(data: ICotizaciondetalle): void {
-    this.getCotizacion();
+    this.updated.emit(data);
   }
 
   /** Whether the number of selected elements matches the total number of rows. */

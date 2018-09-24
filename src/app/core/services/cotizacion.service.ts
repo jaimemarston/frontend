@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CotizacionEndpoint,ClientesdirecciondetailEndpoint } from '../endpoints/cotizacion.endpoint';
+import { CotizacionEndpoint, ClientesdirecciondetailEndpoint } from '../endpoints/cotizacion.endpoint';
 import { Observable } from 'rxjs';
 import { Cotizacion } from '../../dataservice/cotizacion';
-import { ICotizacion } from '../interfaces/Cotizacion.interface';
+import { ICotizacion } from '../interfaces/cotizacion.interface';
 import { filter, map } from 'rxjs/operators';
 
 @Injectable({
@@ -14,15 +14,15 @@ export class CotizacionService {
   }
 
   getCotizaciones(): Observable<Array<ICotizacion>> {
-    return this.http.get<Array<ICotizacion>>(CotizacionEndpoint.rest)
+    return this.http.get<Array<ICotizacion>>(CotizacionEndpoint.rest);
   }
 
   getClientesdetail(): Observable<Array<any>> {
-    return this.http.get<Array<any>>(ClientesdirecciondetailEndpoint.rest)
+    return this.http.get<Array<any>>(ClientesdirecciondetailEndpoint.rest);
   }
 
   getCotizacion(id: number): Observable<Cotizacion> {
-    const url = `${CotizacionEndpoint.rest}/${id}`;
+    const url = `${CotizacionEndpoint.rest}/${id}/`;
     return this.http.get<Cotizacion>(url);
   }
 
@@ -31,12 +31,12 @@ export class CotizacionService {
   }
 
   updateCotizacion(id: number, data: ICotizacion): Observable<ICotizacion> {
-    const url = `${CotizacionEndpoint.rest}/${id}`;
+    const url = `${CotizacionEndpoint.rest}/${id}/`;
     return this.http.put<ICotizacion>(url, data);
   }
 
   deleteCotizacion(id: number): Observable<any | null> {
-    const url = `${CotizacionEndpoint.rest}/${id}`;
+    const url = `${CotizacionEndpoint.rest}/${id}/`;
     return this.http.delete(url);
   }
 }

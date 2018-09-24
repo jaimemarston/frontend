@@ -43,6 +43,7 @@ export interface ICotizacion {
   cc3: string;
   fechaini: Date;
   fechafin: Date;
+  cotizaciones?: Array<ICotizaciondetalle> | null;
 }
 
 export interface ICotizaciondetalle {
@@ -71,6 +72,7 @@ export interface ICotizaciondetalle {
   cc3: string;
   fechaini: Date;
   fechafin: Date;
+  master: number | null;
 }
 
 

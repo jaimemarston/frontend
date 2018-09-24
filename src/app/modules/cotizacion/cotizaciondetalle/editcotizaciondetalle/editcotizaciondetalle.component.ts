@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { CotizaciondetalleService } from '../../../../core/services/cotizaciondetalle.service';
 import { ICotizaciondetalle } from '../../../../core/interfaces/cotizacion.interface';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+
 @Component({
   selector: 'app-editcotizaciondetalle',
   templateUrl: './editcotizaciondetalle.component.html',
@@ -26,12 +27,16 @@ export class EditcotizaciondetalleComponent implements OnInit {
     }
   }
 
+  @Input() idMaster: number;
+
   cotizacion: ICotizaciondetalle;
 
   registerForm: FormGroup;
 
   @Output() back: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() update: EventEmitter<ICotizaciondetalle> = new EventEmitter<ICotizaciondetalle>();
+
+  @ViewChild('inputCodigo') inputCodigo: ElementRef<HTMLInputElement>;
 
   constructor(private cotizacionService: CotizaciondetalleService,
               private formBuilder: FormBuilder,
@@ -78,14 +83,24 @@ export class EditcotizaciondetalleComponent implements OnInit {
       this.saveCotizacion();
       if (clear) {
         this.registerForm.reset();
+        this.inputCodigo.nativeElement.focus();
       }
     } else {
       alert('FORMUARLIO INVALIDO');
     }
   }
 
+  prepareData() {
+    /** rest spread, paso de parametros REST, este método sirve para clonar objetos. destructuración de datos
+     * http://www.etnassoft.com/2016/07/04/desestructuracion-en-javascript-parte-1/ */
+    const data: ICotizaciondetalle = {...this.registerForm.getRawValue()};
+    data.master = this.idMaster;
+
+    return data;
+  }
+
   updateCotizacion(): void {
-    const data: ICotizaciondetalle = this.registerForm.getRawValue();
+    const data = this.prepareData();
     this.cotizacionService.updateCotizacion(this.id, data)
       .subscribe(response => {
         this.update.emit(response);
@@ -94,7 +109,7 @@ export class EditcotizaciondetalleComponent implements OnInit {
   }
 
   addCotizacion(): void {
-    const data: ICotizaciondetalle = this.registerForm.getRawValue();
+    const data = this.prepareData();
     this.cotizacionService.addCotizacion(data)
       .subscribe(response => {
         this.update.emit(response);

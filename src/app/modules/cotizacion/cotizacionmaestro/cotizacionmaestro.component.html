@@ -68,7 +68,7 @@
               <ng-container matColumnDef="options">
                 <mat-header-cell *matHeaderCellDef> Options</mat-header-cell>
                 <mat-cell *matCellDef="let row">
-                  <button (click)="editRecord(row.id)" mat-icon-button color="accent" >
+                  <button (click)="editRecord(row)" mat-icon-button color="accent" >
                     <mat-icon style="color: steelblue;vertical-align:baseline" aria-label="Edit">edit</mat-icon>
                   </button>
 
@@ -80,7 +80,7 @@
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
               <mat-row
-                (click)="viewRecorddetail(row.id)"
+                (click)="viewRecorddetail(row)"
                 matRipple
                 routerLink="/cotizacion"
                 routerLinkActive="editRecord(row.id)"

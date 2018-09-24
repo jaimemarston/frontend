@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CotizaciondetalleEndpoint } from '../endpoints/cotizacion.endpoint';
 import { Observable } from 'rxjs';
 import { Cotizaciondetalle } from '../../dataservice/cotizacion';
-import { ICotizaciondetalle } from '../interfaces/Cotizacion.interface';
+import { ICotizaciondetalle } from '../interfaces/cotizacion.interface';
 import { filter, map } from 'rxjs/operators';
 
 @Injectable({
