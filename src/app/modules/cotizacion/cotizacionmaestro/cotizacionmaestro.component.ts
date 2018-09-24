@@ -26,12 +26,14 @@ export class CotizacionmaestroComponent implements OnInit {
 
   cotizacion: Array<ICotizacion>;
   cotizaciondetalle: Array<ICotizaciondetalle>;
+  cotizacionSelected: ICotizacion;
   dataSource = new MatTableDataSource<ICotizacion>();
   dataSourceDetalle = new MatTableDataSource<ICotizaciondetalle>();
   errorMessage: String;
   selectedId: number;
   edit: boolean;
   @Output() shower: EventEmitter<any> = new EventEmitter();
+  @Output() detalle: EventEmitter<Array<ICotizaciondetalle>> = new EventEmitter();
 
   /** checkbox datatable */
   selection = new SelectionModel<ICotizacion>(true, []);
@@ -42,7 +44,6 @@ export class CotizacionmaestroComponent implements OnInit {
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
     private cotizacionServicedetalle: CotizaciondetalleService,
-
   ) {
   }
 
@@ -51,46 +52,26 @@ export class CotizacionmaestroComponent implements OnInit {
   }
 
   getCotizacion(): void {
-
     this.cotizacionService.getCotizaciones()
       .subscribe(response => {
         this.cotizacion = response;
         this.dataSource.data = this.cotizacion;
         this.dataSource.paginator = this.paginator;
         this.paginator._intl.itemsPerPageLabel = 'Item por Pagina:';
-
+        this.detalle.emit(this.cotizacion[0].cotizaciones);
       });
-       /*
-      this.cotizacionService.getClientesdetail()
-      .subscribe(response => {
-      console.log(response);
-          });
-          */
-    }
+  }
 
-  viewRecorddetail(id: number): void {
-    this.selectedId = id;
-
-    this.cotizacionServicedetalle.getCotizacion(this.selectedId)
-      .subscribe(response => {
-       // console.log(response);
-       // this.shower.emit(response);
-
-
-     /*this.cotizacionServicedetalle.getCotizacion(this.selectedId )
-    .subscribe(response => {
-      this.cotizaciondetalle = response;
-      this.dataSource.data = this.cotizacion;*/
-  });
-
-}
+  viewRecorddetail(cotizacion: ICotizacion): void {
+    this.selectedId = cotizacion.id;
+    this.cotizacionSelected = cotizacion;
+    this.detalle.emit(this.cotizacionSelected.cotizaciones);
+  }
 
 
   delete(id: number): void {
     this.selectedId = id;
-
     this.deleteCotizacion();
-
   }
 
   deleteCotizacion(): void {
@@ -101,8 +82,8 @@ export class CotizacionmaestroComponent implements OnInit {
       });
   }
 
-  public editRecord(id: number): void {
-    this.selectedId = id;
+  public editRecord(row: any): void {
+    this.selectedId = row.id;
     this.edit = true;
   }
 

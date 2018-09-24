@@ -3,5 +3,5 @@
   <app-cotizaciondetalle [detail]="detail"></app-cotizaciondetalle>
 </mat-card> -->
 
-<app-cotizacionmaestro></app-cotizacionmaestro>
-<app-cotizaciondetalle></app-cotizaciondetalle>
+<app-cotizacionmaestro (detalle)="setDetail($event)"></app-cotizacionmaestro>
+<app-cotizaciondetalle [cotizacionesDetalle]="detail" [idMaster]="idMaster" (updated)="getCotizaciones()"></app-cotizaciondetalle>

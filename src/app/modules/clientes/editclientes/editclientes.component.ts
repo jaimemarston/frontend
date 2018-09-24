@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { ClienteService } from '../../../core/services/cliente.service';
 import { IClientes } from '../../../core/interfaces/clientes.interface';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import {MatSnackBar } from '@angular/material';
-
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -13,7 +12,11 @@ import {MatSnackBar } from '@angular/material';
 
 })
 
-export class EditClientesComponent implements OnInit {
+export class EditClientesComponent implements OnInit, AfterViewInit {
+  /**
+   * mascara para poner formatos en inputs.
+   * https://github.com/JsDaddy/ngx-mask
+   * */
   private _id: number;
   get id(): number {
     return this._id;
@@ -37,6 +40,8 @@ export class EditClientesComponent implements OnInit {
   @Output() back: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() update: EventEmitter<IClientes> = new EventEmitter<IClientes>();
 
+  @ViewChildren('inputs') inputs: QueryList<ElementRef<HTMLInputElement>>;
+
   constructor(private clienteService: ClienteService,
               private formBuilder: FormBuilder,
               public snackBar: MatSnackBar) {
@@ -44,6 +49,10 @@ export class EditClientesComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+  }
+
+  ngAfterViewInit() {
+    console.log(this.inputs);
   }
 
   createForm(): void {
@@ -57,26 +66,26 @@ export class EditClientesComponent implements OnInit {
         Validators.maxLength(50),
       ])],
       ruc: [''],
-  telefono1: [''],
-  telefono2: [''],
-  telefono3: [''],
-  contacto: [''],
-  telcontacto: [''],
-  direccion: [''],
-  correo: [''],
-  paginaweb: [''],
-  tipocc: [''],
-  destipocc: [''],
-  condcompvent: [''],
-  banco_nombre1: [''],
-  banco_cuenta1: [''],
-  banco_moneda1: [''],
-  banco_nombre2: [''],
-  banco_cuenta2: [''],
-  banco_moneda2: [''],
-  fechanac: [''],
-  fechaini: [''],
-  fechafin: [''],
+      telefono1: [''],
+      telefono2: [''],
+      telefono3: [''],
+      contacto: [''],
+      telcontacto: [''],
+      direccion: [''],
+      correo: [''],
+      paginaweb: [''],
+      tipocc: [''],
+      destipocc: [''],
+      condcompvent: [''],
+      banco_nombre1: [''],
+      banco_cuenta1: [''],
+      banco_moneda1: [''],
+      banco_nombre2: [''],
+      banco_cuenta2: [''],
+      banco_moneda2: [''],
+      fechanac: [''],
+      fechaini: [''],
+      fechafin: [''],
     });
   }
 
@@ -132,7 +141,7 @@ export class EditClientesComponent implements OnInit {
 
   updateClient(): void {
     const data: IClientes = this.registerForm.getRawValue();
-      this.clienteService.updateCliente(this.id, data)
+    this.clienteService.updateCliente(this.id, data)
       .subscribe(response => {
         this.update.emit(response);
         this.snackBar.open('Registro agregado satisfactoriamente...!');

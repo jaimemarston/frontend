@@ -27,7 +27,7 @@
       <!--<mat-spinner></mat-spinner>-->
     </div>
     <div [hidden]="!edit">
-      <app-editcotizaciondetalle [id]="selectedId" (back)="showDataTable()" (update)="updateDataTable($event)"></app-editcotizaciondetalle>
+      <app-editcotizaciondetalle [idMaster]="idMaster" [id]="selectedId" (back)="showDataTable()" (update)="updateDataTable($event)"></app-editcotizaciondetalle>
     </div>
     <div >
       <mat-table [dataSource]="dataSource" class="mat-elevation-z8">

@@ -18,6 +18,7 @@ export class EditCotizacionComponent implements OnInit {
 
   @Input() set id(id: number) {
     this._id = id;
+    console.log(this.id);
     if (id) {
       this.getCotizacion();
     } else {

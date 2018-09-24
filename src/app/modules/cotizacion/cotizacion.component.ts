@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import { Cotizacion } from '../../dataservice/cotizacion';
 import { DataService } from '../../dataservice/data.service';
 import { CotizacionService } from '../../core/services/cotizacion.service';
-import { ICotizacion } from '../../core/interfaces/cotizacion.interface';
+import { ICotizacion, ICotizaciondetalle } from '../../core/interfaces/cotizacion.interface';
 import { SelectionModel } from '@angular/cdk/collections';
+import { CotizacionmaestroComponent } from './cotizacionmaestro/cotizacionmaestro.component';
 
 
 /**
@@ -17,14 +18,22 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./../../app.component.scss']
 })
 export class CotizacionComponent implements OnInit {
-  detail: any;
-  constructor() { }
+  detail: Array<ICotizaciondetalle>;
+  idMaster: number;
+  @ViewChild(CotizacionmaestroComponent) cotizacionMaestro: CotizacionmaestroComponent;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
-  showDetail(detail: any): any {
+  setDetail(detail: Array<ICotizaciondetalle>): any {
     this.detail = detail;
-    console.log(detail);
+    this.idMaster = this.cotizacionMaestro.selectedId;
+  }
+
+  getCotizaciones(): void {
+    this.cotizacionMaestro.getCotizacion();
   }
 }
