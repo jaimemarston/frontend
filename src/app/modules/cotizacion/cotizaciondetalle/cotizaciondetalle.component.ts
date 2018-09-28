@@ -10,6 +10,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 /**
  * @title Basic use of `<table mat-table>`
  */
+
+
 @Component({
   selector: 'app-cotizaciondetalle',
   templateUrl: './cotizaciondetalle.component.html',
@@ -19,13 +21,14 @@ import { SelectionModel } from '@angular/cdk/collections';
 
 export class CotizaciondetalleComponent implements OnInit {
   _cotizacionesDetalle: Array<ICotizaciondetalle>;
+
   get cotizacionesDetalle(): Array<ICotizaciondetalle> {
     return this._cotizacionesDetalle;
   }
 
   @Input() set cotizacionesDetalle(data: Array<ICotizaciondetalle>) {
     this._cotizacionesDetalle = data;
-    console.log(this.cotizacionesDetalle);
+    /* console.log(this.cotizacionesDetalle); */
     this.dataSource.data = this.cotizacionesDetalle;
   }
 
@@ -35,7 +38,7 @@ export class CotizaciondetalleComponent implements OnInit {
 
   @Output() updated: EventEmitter<any> = new EventEmitter();
 
-  displayedColumns: string[] = ['select', 'codigo', 'nombre', 'options'];
+  displayedColumns: string[] = ['select', 'codigo', 'descripcion', 'desunimed', 'cantidad', 'precio', 'imptotal', 'options'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   cotizacion: Array<ICotizaciondetalle>;
@@ -67,7 +70,7 @@ export class CotizaciondetalleComponent implements OnInit {
         this.dataSource.data = this.cotizacion;
 
 
-        console.log(this.cotizacion);
+        /* console.log(this.cotizacion); */
         this.dataSource.paginator = this.paginator;
         // this.paginator._intl.itemsPerPageLabel = 'Item por Pagina:';
       });

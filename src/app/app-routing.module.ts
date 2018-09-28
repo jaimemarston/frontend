@@ -15,6 +15,14 @@ const routes: Routes = [
         path: 'cotizacion',
         loadChildren: './modules/cotizacion/cotizacion.module#CotizacionModule'
       },
+      {
+        path: 'unidades',
+        loadChildren: './modules/unidades/unidades.module#UnidadesModule'
+      },
+      {
+        path: 'articulos',
+        loadChildren: './modules/articulos/articulos.module#ArticulosModule'
+      },
     ]
 
   }

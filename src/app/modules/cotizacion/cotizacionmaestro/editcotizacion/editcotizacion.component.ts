@@ -2,12 +2,16 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CotizacionService } from '../../../../core/services/cotizacion.service';
 import { ICotizacion } from '../../../../core/interfaces/cotizacion.interface';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatSelectModule, MatFormFieldModule, MatListModule } from '@angular/material';
 
+export interface Estados {
+  codigo: number;
+  descripcion: string;
+}
 @Component({
   selector: 'app-editcotizacion',
   templateUrl: './editcotizacion.component.html',
-  styleUrls: ['./editcotizacion.component.scss']
+  styleUrls: ['./../../../../app.component.scss']
 })
 
 export class EditCotizacionComponent implements OnInit {
@@ -15,10 +19,16 @@ export class EditCotizacionComponent implements OnInit {
   get id(): number {
     return this._id;
   }
+  selectedest = 0;
+  estados: Estados[] = [
+    { codigo: 0, descripcion: 'Activo' },
+    { codigo: 1, descripcion: 'Anulado' },
+  ];
+
 
   @Input() set id(id: number) {
     this._id = id;
-    console.log(this.id);
+    /* console.log(this.id); */
     if (id) {
       this.getCotizacion();
     } else {
@@ -51,7 +61,12 @@ export class EditCotizacionComponent implements OnInit {
       ])],
       fechadoc: [''],
       desruc: [''],
-      ruc: ['']
+      ruc: [''],
+      unidadtransporte: [''],
+      telruc: [''],
+      correoruc: [''],
+      desmonepago: [''],
+      estado: [0],
     });
   }
 
@@ -68,7 +83,11 @@ export class EditCotizacionComponent implements OnInit {
     this.registerForm.get('fechadoc').setValue(this.cotizacion.fechadoc);
     this.registerForm.get('ruc').setValue(this.cotizacion.ruc);
     this.registerForm.get('desruc').setValue(this.cotizacion.desruc);
-
+    this.registerForm.get('unidadtransporte').setValue(this.cotizacion.unidadtransporte);
+    this.registerForm.get('telruc').setValue(this.cotizacion.telruc);
+    this.registerForm.get('correoruc').setValue(this.cotizacion.correoruc);
+    this.registerForm.get('desmonepago').setValue(this.cotizacion.desmonepago);
+    this.registerForm.get('estado').setValue(this.cotizacion.estado);
   }
 
   onBack(): void {
@@ -91,12 +110,16 @@ export class EditCotizacionComponent implements OnInit {
     this.cotizacionService.updateCotizacion(this.id, data)
       .subscribe(response => {
         this.update.emit(response);
+        console.log('graba Maestro');
+        console.log(data);
         this.snackBar.open('Registro agregado satisfactoriamente...!');
       });
   }
 
   addCotizacion(): void {
     const data: ICotizacion = this.registerForm.getRawValue();
+    console.log('info a cargar como nuevo');
+    console.log(data);
     this.cotizacionService.addCotizacion(data)
       .subscribe(response => {
         this.update.emit(response);
@@ -108,4 +131,3 @@ export class EditCotizacionComponent implements OnInit {
     this.id ? this.updateCotizacion() : this.addCotizacion();
   }
 }
-

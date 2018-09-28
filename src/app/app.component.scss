@@ -12,6 +12,49 @@ mat-card{
   margin: 0 auto;
 }
 
+.botonnuevo{
+  color:brown ;
+  width: 25px;
+  line-height: 0px;
+  height: 60%; 
+  font-size: 11px;
+
+  background-color:#f3ffdc;
+  border-color:gray;
+}
+
+.botonimprimir{
+color:brown;
+margin:10px;
+width: 25px;
+line-height: 0px;
+height: 60%;
+font-size: 11px;
+background-color:#ddefbc;
+border-color:gray;
+}
+
+.botoneliminar{
+line-height: 0px;
+height: 60%;
+font-size: 11px;
+background-color: #ddefbc;
+border-color:gray;
+}
+
+.botonvolver{
+  color:brown ;
+  margin:10px;
+  width: 25px;
+  height: 60%; 
+  font-size: 11px;
+  border-color:gray;
+}
+
+.example-full-width{
+  font-size: 13px;
+}
+
 /*
 table {
   width: 100%;
@@ -31,8 +74,12 @@ table {
 
 
 .mat-checkbox{
-  min-height: 20px;
+  min-height: 18px;
   vertical-align: baseline;
+  overflow: visible;
+}
+.mat-cell{
+  overflow: inherit;
 }
 
 

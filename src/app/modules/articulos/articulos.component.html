@@ -1,22 +1,32 @@
 <mat-card>
+
   <mat-toolbar-row style="background: #f3ffdc;color: darkgray; height: 40px; ">
-    <span>Registro Principal - Clientes</span>
+
+    <span>Registro Principal - Relacion de Servicios</span>
     <span style="flex: 1 1 auto;" class="example-spacer"></span>
+
+
     <mat-form-field class="pantallafiltro">
       <input matInput placeholder="Filtro">
     </mat-form-field>
+
     <button mat-stroked-button class="botonimprimir" (click)="openPrint()">
       Imprimir</button>
+
     <button mat-stroked-button ng-click="isValid = !isValid" (click)="addRecord()" class="botonnuevo">
       Nuevo</button>
     <button mat-stroked-button (click)="deleteAllSelecteds()" class="botoneliminar" color="warn">
       Eliminar</button>
+
   </mat-toolbar-row>
 
 
+  <br />
   <div class="button-row">
     <section class='tableSection'>
-
+      <div class="spinner-container">
+        <!--<mat-spinner></mat-spinner>-->
+      </div>
       <div [hidden]="edit">
         <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
           <!--<li *ngFor="let book of promisclientes | async">-->
@@ -45,26 +55,15 @@
             <mat-cell *matCellDef="let element"> {{element.codigo}}</mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="ruc">
-            <mat-header-cell *matHeaderCellDef> RUC</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.ruc}}</mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="nombre">
-            <mat-header-cell *matHeaderCellDef> NOMBRE</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.nombre}}</mat-cell>
+          <ng-container matColumnDef="descripcion">
+            <mat-header-cell *matHeaderCellDef> DESCRIPCION</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.descripcion}}</mat-cell>
           </ng-container>
 
 
-          <ng-container matColumnDef="telefono1">
-            <mat-header-cell *matHeaderCellDef>TELEFONO</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.telefono1}}</mat-cell>
-          </ng-container>
-
-
-          <ng-container matColumnDef="correo">
-            <mat-header-cell *matHeaderCellDef>CORREO</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.correo}}</mat-cell>
+          <ng-container matColumnDef="color">
+            <mat-header-cell *matHeaderCellDef>COLOR</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.color}}</mat-cell>
           </ng-container>
 
           <!-- Weight Column -->
@@ -86,7 +85,7 @@
           </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-          <mat-row matRipple routerLink="/clientes" routerLinkActive="editRecord(row.id)" class="element-row"
+          <mat-row matRipple routerLink="/articulos" routerLinkActive="editRecord(row.id)" class="element-row"
             *matRowDef="let row; columns: displayedColumns;">
           </mat-row>
 
@@ -97,9 +96,8 @@
 
       </div>
       <div [hidden]="!edit">
-        <app-editclientes [id]="selectedId" (back)="showDataTable()" (update)="updateDataTable($event)"></app-editclientes>
+        <app-editarticulos [id]="selectedId" (back)="showDataTable()" (update)="updateDataTable($event)"></app-editarticulos>
       </div>
     </section>
   </div>
-
 </mat-card>

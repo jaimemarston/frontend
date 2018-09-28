@@ -10,6 +10,7 @@ import { CoreModule } from './core/core.module';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { CoreModule } from './core/core.module';
     MatListModule,
     MatIconModule,
     MatButtonModule,
+    MatToolbarModule,
     CoreModule
   ],
   bootstrap: [AppComponent]

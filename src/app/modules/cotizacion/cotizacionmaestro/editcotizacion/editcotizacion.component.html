@@ -3,30 +3,40 @@
     <table class="example-full-width" cellspacing="0">
       <td>
         <mat-form-field>
-          <input matInput formControlName="codigo" class="form-control" placeholder="Codigo">
+          <input matInput type="number" formControlName="codigo" class="form-control" placeholder="Codigo">
         </mat-form-field>
       </td>
       <td>
         <mat-form-field>
-          <input matInput type="date" formControlName="fechadoc" class="form-control" placeholder="fecha" />
+          <input matInput type="date" formControlName="fechadoc" class="form-control" placeholder="Fecha" />
         </mat-form-field>
       </td>
       <td>
         <mat-form-field>
-          <input matInput formControlName="ruc" class="form-control" placeholder="ruc" />
+          <input matInput formControlName="ruc" class="form-control" placeholder="Ruc/dni/otr" />
         </mat-form-field>
       </td>
+      <td><mat-form-field style="width:150%"><input matInput formControlName="desruc" class="form-control" placeholder="Nombre Completo" /></mat-form-field></td>
+    </table>
+   
+    <table class="example-full-width" cellspacing="0">
+      <td><mat-form-field><input matInput formControlName="unidadtransporte" class="form-control" placeholder="Unidad Transporte" /></mat-form-field></td>
+      <td><mat-form-field><input matInput formControlName="telruc" class="form-control" placeholder="Telefono" /></mat-form-field></td>
+      <td><mat-form-field><input matInput formControlName="correoruc" class="form-control" placeholder="Email" /></mat-form-field></td>
       <td>
         <mat-form-field>
-          <input matInput formControlName="desruc" class="form-control" placeholder="desruc" />
+          <mat-select formControlName="estado" class="form-control" placeholder="estado" [(value)]="selectedest">
+            <mat-option class="pantallafiltro" *ngFor="let est of estados" [value]="est.codigo">{{est.descripcion}}</mat-option>
+          </mat-select>
         </mat-form-field>
       </td>
-      <td>
+     
+      <td><mat-form-field><input matInput formControlName="desmonepago" class="form-control" placeholder="Monepago" /></mat-form-field></td>
       
     </table>
 
     <br><br>
-    <div class="form-group" >
+<!--     <div class="form-group" >
       <button style="margin-right: 8px" mat-raised-button color="warn" matTooltip="Grabar info" [disabled]="!registerForm.valid" *ngIf="id" (click)="saveForm()">
         <mat-icon>save</mat-icon>
       </button>
@@ -39,6 +49,16 @@
       <button style="margin-right: 8px" mat-raised-button color="primary" matTooltip="Grabar Nuevo" (click)="onBack()">
         <mat-icon>undo</mat-icon>
       </button>
-    </div>
+    </div> -->
+    <button mat-stroked-button  (click)="onBack()"  class="botonvolver" >
+        Volver</button>
+        
+    <button mat-stroked-button  [disabled]="!registerForm.valid"
+    *ngIf="id" (click)="saveForm()"  class="botonvolver" >
+        Grabar</button>
+
+    <button mat-stroked-button  [disabled]="!registerForm.valid"
+    *ngIf="!id" (click)="saveForm(true)"  class="botonvolver" >
+        Grabar</button>
   </div>
 </form>

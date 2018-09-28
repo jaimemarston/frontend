@@ -1,23 +1,16 @@
-<mat-toolbar style="background: #f3ffdc;color: darkgray; height: 40px; ">
+<mat-toolbar-row style="background: #f3ffdc;color: darkgray; height: 40px; ">
   <span>Registro Detalle - Cotizacion</span>
-  <span class="example-spacer"></span>
-  <div class="example-header" style="margin-left: 40%;">
-    <mat-form-field class="pantallafiltro">
-      <input matInput placeholder="Filtro">
-    </mat-form-field>
-  </div>
-  <button mat-icon-button color="accent">
-    <mat-icon color="primary" (click)="openPrint()" class="example-icon" style="padding: 10px;">print</mat-icon>
-  </button>
-
-  <button ng-click="isValid = !isValid" mat-icon-button (click)="addRecord()" color="accent">
-    <mat-icon color="primary" class="example-icon" style="padding: 10px;">add_circle</mat-icon>
-  </button>
-
-  <button mat-icon-button color="accent">
-    <mat-icon color="primary" class="example-icon" style="color: red;" (click)="deleteAllSelecteds()">remove_circle</mat-icon>
-  </button>
-</mat-toolbar>
+  <span style="flex: 1 1 auto;" class="example-spacer"></span>
+  <mat-form-field class="pantallafiltro">
+    <input matInput placeholder="Filtro">
+  </mat-form-field>
+  <button mat-stroked-button class="botonimprimir" (click)="openPrint()">
+    Imprimir</button>
+  <button mat-stroked-button ng-click="isValid = !isValid" (click)="addRecord()" class="botonnuevo">
+    Nuevo</button>
+  <button mat-stroked-button (click)="deleteAllSelecteds()" class="botoneliminar" color="warn">
+    Eliminar</button>
+</mat-toolbar-row>
 
 
 <br />
@@ -29,7 +22,7 @@
     <div [hidden]="!edit">
       <app-editcotizaciondetalle [idMaster]="idMaster" [id]="selectedId" (back)="showDataTable()" (update)="updateDataTable($event)"></app-editcotizaciondetalle>
     </div>
-    <div >
+    <div>
       <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
         <ng-container matColumnDef="select">
@@ -51,14 +44,28 @@
         <ng-container matColumnDef="codigo">
           <mat-header-cell *matHeaderCellDef> CODIGO</mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.codigo}}</mat-cell>
-          
         </ng-container>
 
-        <ng-container matColumnDef="nombre">
+        <ng-container matColumnDef="descripcion">
           <mat-header-cell *matHeaderCellDef> DESCRIPCION</mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.descripcion}}</mat-cell>
         </ng-container>
-
+        <ng-container matColumnDef="desunimed">
+          <mat-header-cell *matHeaderCellDef> UNIMED</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.desunimed}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="cantidad">
+          <mat-header-cell *matHeaderCellDef> CANTIDAD</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.cantidad}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="precio">
+          <mat-header-cell *matHeaderCellDef> PRECIO</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.precio}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="imptotal">
+          <mat-header-cell *matHeaderCellDef> TOTAL</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.imptotal}}</mat-cell>
+        </ng-container>
 
         <ng-container matColumnDef="options">
           <mat-header-cell *matHeaderCellDef> Options</mat-header-cell>
@@ -73,14 +80,7 @@
           </mat-cell>
         </ng-container>
 
-              <!-- Disclaimer column -->
-
-      <ng-container matColumnDef="disclaimer">
-        <mat-cell class="right-align" mat-footer-cell *matFooterCellDef colspan="2">Subtotal:</mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="disclaimer2">
-        <mat-cell class="right-align" mat-footer-cell *matFooterCellDef colspan="2">Total:</mat-cell>
-      </ng-container>
+        <!-- Disclaimer column -->
 
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -89,15 +89,35 @@
           *matRowDef="let row; columns: displayedColumns;">
         </mat-row>
 
-        
-        <mat-footer-row *matFooterRowDef="['disclaimer']" class="example-second-footer-row">Subtotal:</mat-footer-row>
-        <mat-footer-row *matFooterRowDef="['disclaimer2']" class="example-second-footer-row">Total:</mat-footer-row>
-      
-      
+
       </mat-table>
-     
+
+      <div style="float: right">
+
+
+        <div class="button-row" >
+          <div>
+            <input style="background: aliceblue" disabled value="     Sub Total:">
+            <input disabled value="0.00">
+            <input disabled>
+          </div>
+          <div>
+              <input disabled value="   Descuento:">
+              <input disabled value="0.00">
+              <input disabled>
+          </div>
+          <div>
+              <input disabled value="    IGV 18% :">
+              <input disabled value="0.00">
+              <input disabled>
+          </div>
+          <div>
+              <input disabled value="Total General:">
+              <input disabled value="0.00">
+              <input disabled>
+          </div>
+        </div>
+      </div>
+
 
     </div>
-
-  </section>
-</div>

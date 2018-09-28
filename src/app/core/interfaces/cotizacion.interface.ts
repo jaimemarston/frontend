@@ -43,6 +43,9 @@ export interface ICotizacion {
   cc3: string;
   fechaini: Date;
   fechafin: Date;
+  correoruc: string;
+  estado: number;
+  unidadtransporte: string;
   cotizaciones?: Array<ICotizaciondetalle> | null;
 }
 

@@ -11,14 +11,31 @@
           <input #inputCodigo matInput formControlName="codigo" class="form-control" placeholder="Codigo">
         </mat-form-field>
       </td>
-      <td>
-        <mat-form-field>
-          <input matInput formControlName="descripcion" class="form-control" placeholder="descripcion" />
-        </mat-form-field>
-      </td>
+      <!-- <td><mat-form-field><input matInput formControlName="descripcion" class="form-control" placeholder="Descripcion" /></mat-form-field></td> -->
+      <td><mat-form-field class="example-full-width">
+        <input type="text" placeholder="DescripcionNN" aria-label="Number" matInput [formControl]="myControl" formControlName="descripcion" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="articulos">
+            {{articulos}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field></td>
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <td><mat-form-field style="width:70px"><input matInput formControlName="desunimed" class="form-control" placeholder="Medida" /></mat-form-field></td>
+      <td><mat-form-field style="width:70px"><input matInput formControlName="cantidad" class="form-control" placeholder="Cantidad" /></mat-form-field></td>
+      <td><mat-form-field style="width:70px"><input matInput formControlName="precio" class="form-control" placeholder="Precio" /></mat-form-field></td>
+      <td><mat-form-field style="width:70px"><input matInput formControlName="imptotal" class="form-control" placeholder="imptotal" /></mat-form-field></td>
+      
       <td>
          
-      <button style="margin-right: 8px" mat-raised-button color="warn" matTooltip="Grabar info" [disabled]="!registerForm.valid" *ngIf="id" (click)="saveForm()">
+ <!--      <button style="margin-right: 8px" mat-raised-button color="warn" matTooltip="Grabar info" [disabled]="!registerForm.valid" *ngIf="id" (click)="saveForm()">
         <mat-icon>save</mat-icon>
       </button>
       
@@ -29,8 +46,21 @@
 
       <button style="margin-right: 8px" mat-raised-button color="primary" matTooltip="Grabar Nuevo" (click)="onBack()">
         <mat-icon>undo</mat-icon>
-      </button>
+      </button> -->
+      <button mat-stroked-button  (click)="onBack()"  class="botonvolver" >
+          Volver</button>
+          
+      <button mat-stroked-button  [disabled]="!registerForm.valid"
+      *ngIf="id" (click)="saveForm()"  class="botonvolver" >
+          Grabar</button>
+  
+      <button mat-stroked-button  [disabled]="!registerForm.valid"
+      *ngIf="!id" (click)="saveForm(true)"  class="botonvolver" >
+          Grabar</button>
     </table>
+    
+
+
   </div>
 </form>
   </div>

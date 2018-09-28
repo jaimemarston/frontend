@@ -27,11 +27,14 @@ export class CotizacionService {
   }
 
   addCotizacion(data: ICotizacion): Observable<ICotizacion> {
-    return this.http.post<ICotizacion>(CotizacionEndpoint.rest, data);
+    const url = `${CotizacionEndpoint.rest}/`;
+    return this.http.post<ICotizacion>(url, data);
   }
 
   updateCotizacion(id: number, data: ICotizacion): Observable<ICotizacion> {
     const url = `${CotizacionEndpoint.rest}/${id}/`;
+    console.log('envio update put url');
+    console.log(url);
     return this.http.put<ICotizacion>(url, data);
   }
 

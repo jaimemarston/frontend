@@ -13,7 +13,7 @@
       </td>
       <td>
         <mat-form-field>
-          <input matInput formControlName="ruc" class="form-control" placeholder="RUC" />
+          <input matInput formControlName="ruc" class="form-control" placeholder="RUC/DNI/OTR" />
         </mat-form-field>
       </td>
       <td>
@@ -55,29 +55,50 @@
     </table>
     <table class="example-full-width" cellspacing="0">
       <mat-form-field>
-        <input matInput formControlName="banco_nombre1" class="form-control" placeholder="banco_nombre1" />
+        <mat-select formControlName="banco_nombre1" class="form-control" placeholder="Banco" [(value)]="selectedban">
+          <mat-option class="pantallafiltro" *ngFor="let ban of bancos" [value]="ban.codigo">
+            {{ban.descripcion}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <td></td>
+      <mat-form-field>
+        <input matInput formControlName="banco_cuenta1" class="form-control" placeholder="Numero de Cta" />
       </mat-form-field>
       <td></td>
       <mat-form-field>
-        <input matInput formControlName="banco_cuenta1" class="form-control" placeholder="banco_cuenta1" />
-      </mat-form-field>
-      <td></td>
-      <mat-form-field>
-        <input matInput formControlName="banco_moneda1" class="form-control" placeholder="banco_moneda1" />
+        <mat-select formControlName="banco_moneda1" class="form-control" placeholder="Moneda" [(value)]="selectedmon">
+          <mat-option class="pantallafiltro" *ngFor="let mon of monedas" [value]="mon.codigo">{{mon.descripcion}}</mat-option>
+        </mat-select>
       </mat-form-field>
       <td></td>
     </table>
     <table class="example-full-width" cellspacing="0">
+      <!--      <mat-form-field>
+        <input matInput formControlName="banco_nombre2" class="form-control" placeholder="banco 2" />
+      </mat-form-field> -->
+
       <mat-form-field>
-        <input matInput formControlName="banco_nombre2" class="form-control" placeholder="banco_nombre2" />
+        <mat-select formControlName="banco_nombre2" class="form-control" placeholder="Banco 2" [(value)]="selectedban2">
+          <mat-option class="pantallafiltro" *ngFor="let ban of bancos" [value]="ban.codigo">
+            {{ban.descripcion}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
+
       <td></td>
       <mat-form-field>
-        <input matInput formControlName="banco_cuenta2" class="form-control" placeholder="banco_cuenta2" />
+        <input matInput formControlName="banco_cuenta2" class="form-control" placeholder="Numero de Cta 2" />
       </mat-form-field>
       <td></td>
-      <mat-form-field>
+<!--       <mat-form-field>
         <input #inputs matInput formControlName="banco_moneda2" class="form-control" placeholder="banco_moneda2" />
+      </mat-form-field> -->
+      <mat-form-field>
+        <mat-select formControlName="banco_moneda1" class="form-control" placeholder="Moneda" [(value)]="selectedmon">
+          <mat-option class="pantallafiltro" *ngFor="let mon of monedas" [value]="mon.codigo">{{mon.descripcion}}</mat-option>
+        </mat-select>
       </mat-form-field>
       <td></td>
     </table>
@@ -90,10 +111,10 @@
       </mat-form-field>
       -->
       <mat-form-field style="width:65%">
-          <input #inputs matInput type="date" formControlName="fechanac" class="form-control" placeholder="Fechanac" />
-        </mat-form-field>
+        <input #inputs matInput type="date" formControlName="fechanac" class="form-control" placeholder="Fechanac" />
+      </mat-form-field>
       <td></td>
-  
+
       <mat-form-field style="width:65%">
         <input #inputs matInput type="date" formControlName="fechaini" class="form-control" placeholder="Fechaini" />
       </mat-form-field>
@@ -103,7 +124,7 @@
       </mat-form-field>
       <td></td>
     </table>
-    <table class="example-full-width" cellspacing="0">
+    <!--     <table class="example-full-width" cellspacing="0">
 
 
       <mat-form-field>
@@ -118,22 +139,37 @@
         <input matInput formControlName="condcompvent" class="form-control" placeholder="condcompvent" />
       </mat-form-field>
       <td></td>
-    </table>
+    </table> -->
 
     <br><br>
-    <div class="form-group" >
-      <button style="margin-right: 8px" mat-raised-button color="warn" matTooltip="Grabar info" [disabled]="!registerForm.valid" *ngIf="id" (click)="saveForm()">
+
+<!--     
+    <div class="form-group">
+      <button style="margin-right: 8px" mat-raised-button color="warn" matTooltip="Grabar info" [disabled]="!registerForm.valid"
+        *ngIf="id" (click)="saveForm()">
         <mat-icon>save</mat-icon>
       </button>
-      
-      <button style="margin-right: 8px" mat-raised-button color="accent" matTooltip="Grabar Nuevo" [disabled]="!registerForm.valid" *ngIf="!id"
-        (click)="saveForm(true)">
+
+      <button style="margin-right: 8px" mat-raised-button color="accent" matTooltip="Grabar Nuevo" [disabled]="!registerForm.valid"
+        *ngIf="!id" (click)="saveForm(true)">
         <mat-icon>done</mat-icon>
       </button>
 
       <button style="margin-right: 8px" mat-raised-button color="primary" matTooltip="Grabar Nuevo" (click)="onBack()">
         <mat-icon>undo</mat-icon>
       </button>
-    </div>
+    </div> -->
+    <button mat-stroked-button  (click)="onBack()"  class="botonvolver" >
+        Volver</button>
+        
+    <button mat-stroked-button  [disabled]="!registerForm.valid"
+    *ngIf="id" (click)="saveForm()"  class="botonvolver" >
+        Grabar</button>
+
+    <button mat-stroked-button  [disabled]="!registerForm.valid"
+    *ngIf="!id" (click)="saveForm(true)"  class="botonvolver" >
+        Grabar</button>
+
+
   </div>
 </form>

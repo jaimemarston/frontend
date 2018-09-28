@@ -1,13 +1,18 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { CotizaciondetalleService } from '../../../../core/services/cotizaciondetalle.service';
 import { ICotizaciondetalle } from '../../../../core/interfaces/cotizacion.interface';
+import { IArticulo } from '../../../../core/interfaces/articulo.interface';
+import { ArticuloService } from '../../../../core/services/articulo.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-editcotizaciondetalle',
   templateUrl: './editcotizaciondetalle.component.html',
-  styleUrls: ['./editcotizaciondetalle.component.scss']
+  styleUrls: ['./../../../../app.component.scss']
 })
 
 export class EditcotizaciondetalleComponent implements OnInit {
@@ -18,6 +23,7 @@ export class EditcotizaciondetalleComponent implements OnInit {
 
   @Input() set id(id: number) {
     this._id = id;
+
     if (id) {
       this.getCotizacion();
     } else {
@@ -28,9 +34,13 @@ export class EditcotizaciondetalleComponent implements OnInit {
   }
 
   @Input() idMaster: number;
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
+
 
   cotizacion: ICotizaciondetalle;
-
+  articulos: Array<IArticulo>;
   registerForm: FormGroup;
 
   @Output() back: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -40,28 +50,47 @@ export class EditcotizaciondetalleComponent implements OnInit {
 
   constructor(private cotizacionService: CotizaciondetalleService,
               private formBuilder: FormBuilder,
+              private articuloService: ArticuloService,
               public snackBar: MatSnackBar) {
   }
 
-  ngOnInit() {
-    this.createForm();
+  getArticulo(): void {
+    this.articuloService.getArticulos()
+      .subscribe(response => {
+        this.articulos = response;
+
+      });
   }
 
+  ngOnInit() {
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+    this.createForm();
+    this.getArticulo();
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+  }
   createForm(): void {
     this.registerForm = this.formBuilder.group({
       codigo: ['', Validators.compose([
         Validators.required
       ])],
-      descripcion: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(10),
-        Validators.maxLength(50),
-      ])],
-
+      descripcion: [''],
+      desunimed: [''],
+      cantidad: [''],
+      precio: [''],
+      imptotal: [''],
     });
   }
 
   getCotizacion(): void {
+
     this.cotizacionService.getCotizacion(this.id)
       .subscribe(response => {
         this.cotizacion = response;
@@ -72,6 +101,10 @@ export class EditcotizaciondetalleComponent implements OnInit {
   setForm(): void {
     this.registerForm.get('codigo').setValue(this.cotizacion.codigo);
     this.registerForm.get('descripcion').setValue(this.cotizacion.descripcion);
+    this.registerForm.get('desunimed').setValue(this.cotizacion.desunimed);
+    this.registerForm.get('cantidad').setValue(this.cotizacion.cantidad);
+    this.registerForm.get('precio').setValue(this.cotizacion.precio);
+    this.registerForm.get('imptotal').setValue(this.cotizacion.imptotal);
   }
 
   onBack(): void {
@@ -110,6 +143,9 @@ export class EditcotizaciondetalleComponent implements OnInit {
 
   addCotizacion(): void {
     const data = this.prepareData();
+
+/*     console.log('data');
+    console.log(data); */
     this.cotizacionService.addCotizacion(data)
       .subscribe(response => {
         this.update.emit(response);
@@ -118,6 +154,7 @@ export class EditcotizaciondetalleComponent implements OnInit {
   }
 
   saveCotizacion(): void {
+
     this.id ? this.updateCotizacion() : this.addCotizacion();
   }
 }

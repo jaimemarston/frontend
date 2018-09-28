@@ -17,8 +17,6 @@ export class ClienteService {
     return this.http.get<Array<IClientes>>(ClientesEndpoint.rest)
   }
 
-
-
   getCliente(id: number): Observable<Clientes> {
     const url = `${ClientesEndpoint.rest}/${id}`;
     return this.http.get<Clientes>(url);
@@ -39,5 +37,5 @@ export class ClienteService {
     return this.http.delete(url);
   }
 
-  
+
 }

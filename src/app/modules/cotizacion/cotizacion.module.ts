@@ -18,6 +18,10 @@ import {
   MatButtonModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatChipsModule,
+  MatListModule,
+  MatSelectModule,
+  MatAutocompleteModule,
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -46,14 +50,19 @@ const routes: Routes = [
     MatCheckboxModule,
     MatPaginatorModule,
     FormsModule,
+    MatListModule,
     ReactiveFormsModule,
     MatDialogModule,
     MatInputModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatListModule,
     MatDatepickerModule,
     MatDatepickerModule,        // <----- import(must)
     MatNativeDateModule,         // <----- import(optional)
+    MatChipsModule,
+    MatSelectModule,
+    MatAutocompleteModule,
     RouterModule.forChild(routes)
   ],
   declarations: [CotizacionComponent, EditCotizacionComponent, CotizacionmaestroComponent, CotizaciondetalleComponent, EditcotizaciondetalleComponent],

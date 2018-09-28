@@ -1,6 +1,6 @@
 <mat-card>
   <mat-toolbar-row style="background: #f3ffdc;color: darkgray; height: 40px; ">
-    <span>Registro Principal - Clientes</span>
+    <span>Registro Principal - Unidades de Transporte</span>
     <span style="flex: 1 1 auto;" class="example-spacer"></span>
     <mat-form-field class="pantallafiltro">
       <input matInput placeholder="Filtro">
@@ -14,9 +14,38 @@
   </mat-toolbar-row>
 
 
+
+  <!--   <mat-toolbar style="background: #f3ffdc;color: darkgray; height: 40px; ">
+    <span>Registro Principal - Unidades de Transporte</span>
+
+    <table class="example-full-width" cellspacing="0">
+      <div class="left">
+        <mat-form-field class="pantallafiltro">
+          <input matInput placeholder="Filtro">
+        </mat-form-field>
+      </div>
+
+      <div class="left" style="float: right;">
+        <button mat-icon-button color="accent">
+          <mat-icon color="primary" (click)="openPrint()" class="example-icon" style="padding: 10px;">print</mat-icon>
+        </button>
+
+        <button ng-click="isValid = !isValid" mat-icon-button (click)="addRecord()" color="accent">
+          <mat-icon color="primary" class="example-icon" style="padding: 10px;">add_circle</mat-icon>
+        </button>
+
+        <button mat-icon-button color="accent">
+          <mat-icon color="primary" class="example-icon" style="color: red;" (click)="deleteAllSelecteds()">remove_circle</mat-icon>
+        </button>
+      </div>
+    </table>
+  </mat-toolbar> -->
+
   <div class="button-row">
     <section class='tableSection'>
-
+      <div class="spinner-container">
+        <!--<mat-spinner></mat-spinner>-->
+      </div>
       <div [hidden]="edit">
         <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
           <!--<li *ngFor="let book of promisclientes | async">-->
@@ -45,32 +74,27 @@
             <mat-cell *matCellDef="let element"> {{element.codigo}}</mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="ruc">
-            <mat-header-cell *matHeaderCellDef> RUC</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.ruc}}</mat-cell>
+          <ng-container matColumnDef="descripcion">
+            <mat-header-cell *matHeaderCellDef> DESCRIPCION</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.descripcion}}</mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="nombre">
-            <mat-header-cell *matHeaderCellDef> NOMBRE</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.nombre}}</mat-cell>
-          </ng-container>
-
-
-          <ng-container matColumnDef="telefono1">
-            <mat-header-cell *matHeaderCellDef>TELEFONO</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.telefono1}}</mat-cell>
+          <ng-container matColumnDef="placa">
+            <mat-header-cell *matHeaderCellDef> PLACA</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.placa}}</mat-cell>
           </ng-container>
 
 
-          <ng-container matColumnDef="correo">
-            <mat-header-cell *matHeaderCellDef>CORREO</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.correo}}</mat-cell>
+          <ng-container matColumnDef="npasajeros">
+            <mat-header-cell *matHeaderCellDef>PASAJEROS</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.npasajeros}}</mat-cell>
           </ng-container>
 
-          <!-- Weight Column -->
 
-
-
+          <ng-container matColumnDef="color">
+            <mat-header-cell *matHeaderCellDef>COLOR</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.color}}</mat-cell>
+          </ng-container>
 
           <ng-container matColumnDef="options">
             <mat-header-cell *matHeaderCellDef> Options</mat-header-cell>
@@ -86,7 +110,7 @@
           </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
-          <mat-row matRipple routerLink="/clientes" routerLinkActive="editRecord(row.id)" class="element-row"
+          <mat-row matRipple routerLink="/unidades" routerLinkActive="editRecord(row.id)" class="element-row"
             *matRowDef="let row; columns: displayedColumns;">
           </mat-row>
 
@@ -94,12 +118,10 @@
         <mat-paginator #paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
         </mat-paginator>
 
-
       </div>
       <div [hidden]="!edit">
-        <app-editclientes [id]="selectedId" (back)="showDataTable()" (update)="updateDataTable($event)"></app-editclientes>
+        <app-editunidades [id]="selectedId" (back)="showDataTable()" (update)="updateDataTable($event)"></app-editunidades>
       </div>
     </section>
   </div>
-
 </mat-card>

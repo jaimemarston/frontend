@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClientesComponent } from './clientes.component';
+import { UnidadesComponent } from './unidades.component';
+
 import { RouterModule, Routes } from '@angular/router';
 import {
   MatCardModule,
@@ -20,16 +21,17 @@ import {
   MatNativeDateModule,
   MatSelectModule,
   MatListModule,
+  MatGridListModule,
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EditClientesComponent } from './editclientes/editclientes.component';
+import { EditunidadesComponent } from './editunidades/editunidades.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ClientesComponent
+    component: UnidadesComponent
   }
 ];
 
@@ -53,13 +55,15 @@ const routes: Routes = [
     MatInputModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatToolbarModule,
     MatDatepickerModule,
     MatDatepickerModule,        // <----- import(must)
     MatNativeDateModule,         // <----- import(optional)
+    MatGridListModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ClientesComponent, EditClientesComponent],
+  declarations: [UnidadesComponent, EditunidadesComponent],
   providers: [{provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}]
 })
-export class ClientesModule {
+export class UnidadesModule {
 }

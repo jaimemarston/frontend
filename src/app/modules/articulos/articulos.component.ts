@@ -1,37 +1,36 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatSnackBar, MatTabChangeEvent, MatTableDataSource, MatPaginator } from '@angular/material';
 import { Router } from '@angular/router';
-import { ClienteService } from '../../core/services/cliente.service';
-import { IClientes } from '../../core/interfaces/clientes.interface';
+import { ArticuloService } from '../../core/services/articulo.service';
+import { IArticulo } from '../../core/interfaces/articulo.interface';
 import { SelectionModel } from '@angular/cdk/collections';
-
 
 /**
  * @title Basic use of `<table mat-table>`
  */
+
 @Component({
-  selector: 'app-clientes',
-  templateUrl: './clientes.component.html',
+  selector: 'app-articulos',
+  templateUrl: './articulos.component.html',
   styleUrls: ['./../../app.component.scss']
 })
 
-export class ClientesComponent implements OnInit {
- /* displayedColumns: string[] = ['select', 'id', 'codigo', 'ruc' ,'nombre', 'telefono1', 'correo', 'options'];*/
-  displayedColumns: string[] = ['select', 'codigo', 'ruc', 'nombre', 'telefono1', 'correo', 'options'];
+export class ArticulosComponent implements OnInit {
+  displayedColumns: string[] = ['select', 'codigo', 'descripcion', 'options'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  clientes: Array<IClientes>;
-  dataSource = new MatTableDataSource<IClientes>();
+  articulos: Array<IArticulo>;
+  dataSource = new MatTableDataSource<IArticulo>();
   errorMessage: String;
   selectedId: number;
   edit: boolean;
 
 
   /** checkbox datatable */
-  selection = new SelectionModel<IClientes>(true, []);
+  selection = new SelectionModel<IArticulo>(true, []);
 
   constructor(
-    private clienteService: ClienteService,
+    private articuloService: ArticuloService,
     private router: Router,
     public dialog: MatDialog,
     private snackBar: MatSnackBar
@@ -39,19 +38,16 @@ export class ClientesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getClientes();
+    this.getArticulos();
   }
 
-  getClientes(): void {
-    this.clienteService.getClientes()
+  getArticulos(): void {
+    this.articuloService.getArticulos()
       .subscribe(response => {
-        this.clientes = response;
-        this.dataSource.data = this.clientes;
-
-        // this.clientes = response.filter(v => v.id < 93) filtrando el array;
-        /* console.log(this.clientes); */
+        this.articulos = response;
+        this.dataSource.data = this.articulos;
         this.dataSource.paginator = this.paginator;
-        this.paginator._intl.itemsPerPageLabel= 'Item por Pagina:';
+        this.paginator._intl.itemsPerPageLabel = 'Item por Pagina:';
       });
   }
 
@@ -63,10 +59,10 @@ export class ClientesComponent implements OnInit {
   }
 
   deleteClient(): void {
-    this.clienteService.deleteCliente(this.selectedId)
+    this.articuloService.deleteArticulo(this.selectedId)
       .subscribe(response => {
         /* console.log(response); */
-        this.getClientes();
+        this.getArticulos();
       });
   }
 
@@ -84,8 +80,8 @@ export class ClientesComponent implements OnInit {
     this.edit = false;
   }
 
-  updateDataTable(data: IClientes): void {
-    this.getClientes();
+  updateDataTable(data: IArticulo): void {
+    this.getArticulos();
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -113,10 +109,10 @@ export class ClientesComponent implements OnInit {
   async deleteAllSelecteds() {
     const selecteds = this.selection.selected;
     for (let index = 0; index < selecteds.length; index++) {
-      await this.clienteService.deleteCliente(selecteds[index].id).toPromise();
+      await this.articuloService.deleteArticulo(selecteds[index].id).toPromise();
       if (index === selecteds.length - 1) {
         this.snackBar.open('ELMINADOS TODOS');
-        this.getClientes();
+        this.getArticulos();
       }
     }
   }

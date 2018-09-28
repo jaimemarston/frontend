@@ -1,0 +1,53 @@
+<form [formGroup]="registerForm">
+  <div class="example-container">
+    <table class="example-full-width" cellspacing="0">
+      <td>
+        <mat-form-field>
+          <input matInput formControlName="codigo" class="form-control" placeholder="Codigo">
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field>
+          <input matInput formControlName="descripcion" class="form-control" placeholder="Descripcion" />
+        </mat-form-field>
+      </td>
+
+    </table>
+
+
+    <br><br>
+
+    <div class="form-group">
+<!--       <button style="margin-right: 8px" mat-raised-button color="warn" matTooltip="Grabar info"
+   [disabled]="!registerForm.valid"
+        *ngIf="id" (click)="saveForm()">
+        <mat-icon>save</mat-icon>
+      </button>
+
+      <button style="margin-right: 8px" mat-raised-button color="accent" matTooltip="Grabar Nuevo" 
+      [disabled]="!registerForm.valid"
+        *ngIf="!id" (click)="saveForm(true)">
+        <mat-icon>done</mat-icon>
+      </button>
+
+      <button style="margin-right: 8px" mat-raised-button color="primary" matTooltip="Grabar Nuevo" >
+        <mat-icon>undo</mat-icon>
+      </button> -->
+
+
+      <button mat-stroked-button  (click)="onBack()"  class="botonvolver" >
+          Volver</button>
+          
+      <button mat-stroked-button  [disabled]="!registerForm.valid"
+      *ngIf="id" (click)="saveForm()"  class="botonvolver" >
+          Grabar</button>
+
+      <button mat-stroked-button  [disabled]="!registerForm.valid"
+      *ngIf="!id" (click)="saveForm(true)"  class="botonvolver" >
+          Grabar</button>
+
+    
+
+    </div>
+  </div>
+</form>

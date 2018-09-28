@@ -29,6 +29,8 @@ export class Cotizacion {
   vendidopor: string;
   fechapago: Date;
   autorizadosunat: string;
+  unidadtransporte: string;
+  correoruc: string;
   impsubtotal: number;
   impdescuentos: number;
   impvalorventa: number;
@@ -43,6 +45,7 @@ export class Cotizacion {
   cc3: string;
   fechaini: Date;
   fechafin: Date;
+  estado: number;
 }
 
 export class Cotizaciondetalle {

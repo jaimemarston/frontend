@@ -21,7 +21,7 @@ import { CotizaciondetalleComponent } from '../cotizaciondetalle/cotizaciondetal
 
 export class CotizacionmaestroComponent implements OnInit {
 
-  displayedColumns: string[] = ['select', 'codigo', 'fechadoc', 'ruc', 'desruc', 'options'];
+  displayedColumns: string[] = ['select', 'codigo', 'fechadoc', 'ruc', 'desruc', 'unidadtransporte', 'telruc', 'correoruc', 'estado', 'options'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   cotizacion: Array<ICotizacion>;
@@ -52,6 +52,8 @@ export class CotizacionmaestroComponent implements OnInit {
   }
 
   getCotizacion(): void {
+    console.log('carga detalle nuevamente. deberia ser referdio al idmaster seleccionado');
+    console.log('no se ejecuta al darle click');
     this.cotizacionService.getCotizaciones()
       .subscribe(response => {
         this.cotizacion = response;
@@ -64,6 +66,7 @@ export class CotizacionmaestroComponent implements OnInit {
 
   viewRecorddetail(cotizacion: ICotizacion): void {
     this.selectedId = cotizacion.id;
+    console.log('idselec ' + cotizacion.id);
     this.cotizacionSelected = cotizacion;
     this.detalle.emit(this.cotizacionSelected.cotizaciones);
   }
@@ -77,7 +80,7 @@ export class CotizacionmaestroComponent implements OnInit {
   deleteCotizacion(): void {
     this.cotizacionService.deleteCotizacion(this.selectedId)
       .subscribe(response => {
-        console.log(response);
+        /* console.log(response); */
         this.getCotizacion();
       });
   }

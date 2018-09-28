@@ -1,14 +1,21 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { ClienteService } from '../../../core/services/cliente.service';
+import { BancoService } from '../../../core/services/banco.service';
 import { IClientes } from '../../../core/interfaces/clientes.interface';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatSelectModule, MatFormFieldModule } from '@angular/material';
+import { Ibancos } from '../../../core/interfaces/varios.interface';
 
+
+export interface Monedas {
+  codigo: string;
+  descripcion: string;
+}
 
 @Component({
   selector: 'app-editclientes',
   templateUrl: './editclientes.component.html',
-  styleUrls: ['./editclientes.component.scss'],
+  styleUrls: ['./../../../app.component.scss'],
 
 })
 
@@ -17,6 +24,11 @@ export class EditClientesComponent implements OnInit, AfterViewInit {
    * mascara para poner formatos en inputs.
    * https://github.com/JsDaddy/ngx-mask
    * */
+
+  selectedmon = '0'; /* moneda por defecto */
+  selectedban = '';
+  selectedban2 = '';
+
   private _id: number;
   get id(): number {
     return this._id;
@@ -33,9 +45,21 @@ export class EditClientesComponent implements OnInit, AfterViewInit {
     }
   }
 
-  cliente: IClientes;
+/*   bancos: Bancos[] = [
+    { codigo: 'steak-0', descripcion: '2018' },
+    { codigo: 'pizza-1', descripcion: '2019' },
+    { codigo: 'tacos-2', descripcion: '2020' }
+  ]; */
 
+monedas: Monedas[] = [
+    { codigo: 'Soles', descripcion: 'Soles' },
+    { codigo: 'Dolares', descripcion: 'Dolares' },
+  ];
+
+
+  cliente: IClientes;
   registerForm: FormGroup;
+  bancos: Array<Ibancos>;
 
   @Output() back: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() update: EventEmitter<IClientes> = new EventEmitter<IClientes>();
@@ -43,16 +67,27 @@ export class EditClientesComponent implements OnInit, AfterViewInit {
   @ViewChildren('inputs') inputs: QueryList<ElementRef<HTMLInputElement>>;
 
   constructor(private clienteService: ClienteService,
+              private bancoService: BancoService,
               private formBuilder: FormBuilder,
               public snackBar: MatSnackBar) {
   }
 
+  getBanco(): void {
+    this.bancoService.getBancos()
+      .subscribe(response => {
+        this.bancos = response;
+
+      });
+  }
+
   ngOnInit() {
     this.createForm();
+    this.getBanco();
   }
 
   ngAfterViewInit() {
-    console.log(this.inputs);
+  /*   console.log(this.inputs); */
+
   }
 
   createForm(): void {
@@ -141,6 +176,7 @@ export class EditClientesComponent implements OnInit, AfterViewInit {
 
   updateClient(): void {
     const data: IClientes = this.registerForm.getRawValue();
+
     this.clienteService.updateCliente(this.id, data)
       .subscribe(response => {
         this.update.emit(response);

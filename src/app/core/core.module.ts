@@ -10,7 +10,7 @@ import {
   MatFormFieldModule,
   MatSelectModule,
   MatListModule,
-  MatMenuModule
+  MatMenuModule,
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
 
@@ -18,6 +18,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     LayoutModule,
+    MatSelectModule,
     MatIconModule,
     MatToolbarModule,
     MatSidenavModule,
