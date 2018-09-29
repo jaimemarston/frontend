@@ -6,11 +6,14 @@
       <input matInput placeholder="Filtro">
     </mat-form-field>
     <button mat-stroked-button class="botonimprimir" (click)="openPrint()">
-      Imprimir</button>
+      Imprimir
+    </button>
     <button mat-stroked-button ng-click="isValid = !isValid" (click)="addRecord()" class="botonnuevo">
-      Nuevo</button>
+      Nuevo
+    </button>
     <button mat-stroked-button (click)="deleteAllSelecteds()" class="botoneliminar" color="warn">
-      Eliminar</button>
+      Eliminar
+    </button>
   </mat-toolbar-row>
 
 
@@ -25,13 +28,14 @@
                     The actual rendered columns are set as a property on the row definition" -->
           <ng-container matColumnDef="select">
             <mat-header-cell *matHeaderCellDef>
-              <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
-                [indeterminate]="selection.hasValue() && !isAllSelected()">
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()">
               </mat-checkbox>
             </mat-header-cell>
             <mat-cell *matCellDef="let row">
               <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-                [checked]="selection.isSelected(row)">
+                            [checked]="selection.isSelected(row)">
               </mat-checkbox>
             </mat-cell>
           </ng-container>
@@ -70,8 +74,6 @@
           <!-- Weight Column -->
 
 
-
-
           <ng-container matColumnDef="options">
             <mat-header-cell *matHeaderCellDef> Options</mat-header-cell>
             <mat-cell *matCellDef="let row">
@@ -87,7 +89,7 @@
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
           <mat-row matRipple routerLink="/clientes" routerLinkActive="editRecord(row.id)" class="element-row"
-            *matRowDef="let row; columns: displayedColumns;">
+                   *matRowDef="let row; columns: displayedColumns;">
           </mat-row>
 
         </mat-table>
@@ -97,9 +99,13 @@
 
       </div>
       <div [hidden]="!edit">
-        <app-editclientes [id]="selectedId" (back)="showDataTable()" (update)="updateDataTable($event)"></app-editclientes>
+        <app-editclientes [id]="selectedId" (back)="showDataTable()"
+                          (update)="updateDataTable($event)"></app-editclientes>
       </div>
     </section>
   </div>
 
 </mat-card>
+
+
+<div id="div_print" [hidden]="true"></div>

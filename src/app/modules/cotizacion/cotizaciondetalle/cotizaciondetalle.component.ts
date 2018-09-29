@@ -16,7 +16,6 @@ import { SelectionModel } from '@angular/cdk/collections';
   selector: 'app-cotizaciondetalle',
   templateUrl: './cotizaciondetalle.component.html',
   styleUrls: ['./../../../app.component.scss']
-
 })
 
 export class CotizaciondetalleComponent implements OnInit {
@@ -137,7 +136,8 @@ export class CotizaciondetalleComponent implements OnInit {
       await this.cotizacionService.deleteCotizacion(selecteds[index].id).toPromise();
       if (index === selecteds.length - 1) {
         this.snackBar.open('ELMINADOS TODOS');
-        this.getCotizacion();
+        // this.getCotizacion();
+        this.updated.emit(true);
       }
     }
   }

@@ -13,6 +13,7 @@ import {
   MatMenuModule,
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
+import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 
 @NgModule({
   imports: [
@@ -29,8 +30,8 @@ import { RouterModule } from '@angular/router';
     MatMenuModule,
     RouterModule
   ],
-  declarations: [MainNavComponent],
-  exports: [MainNavComponent]
+  declarations: [MainNavComponent, BlankLayoutComponent],
+  exports: [MainNavComponent, BlankLayoutComponent]
 })
 export class CoreModule {
 }
