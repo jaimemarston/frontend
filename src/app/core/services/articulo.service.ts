@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ArticuloEndpoint } from '../endpoints/articulo.endpoint';
 import { Observable } from 'rxjs';
-import { Articulos } from '../../dataservice/Articulos';
+import { Articulos } from '../../dataservice/articulos';
 import { IArticulo } from '../interfaces/articulo.interface';
 import { filter, map } from 'rxjs/operators';
 

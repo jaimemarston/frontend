@@ -95,6 +95,7 @@
                 routerLink="/cotizacion"
                 routerLinkActive="editRecord(row.id)"
                 class="element-row"
+                [ngClass]="{ 'selected': row.id === cotizacionSelected?.id }"
                 *matRowDef="let row; columns: displayedColumns;">
               </mat-row>
 

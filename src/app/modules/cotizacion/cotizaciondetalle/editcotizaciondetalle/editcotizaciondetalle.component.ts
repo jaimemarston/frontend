@@ -5,8 +5,8 @@ import { IArticulo } from '../../../../core/interfaces/articulo.interface';
 import { ArticuloService } from '../../../../core/services/articulo.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { BehaviorSubject, from, Observable, Subject } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 
 @Component({
@@ -36,7 +36,7 @@ export class EditcotizaciondetalleComponent implements OnInit {
   @Input() idMaster: number;
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]>;
+  filteredArticulos: Observable<Array<IArticulo>>;
 
 
   cotizacion: ICotizaciondetalle;
@@ -58,24 +58,24 @@ export class EditcotizaciondetalleComponent implements OnInit {
     this.articuloService.getArticulos()
       .subscribe(response => {
         this.articulos = response;
-
+        // this.filteredArticulos = from(this.articulos);
       });
   }
 
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
     this.createForm();
     this.getArticulo();
   }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
+  private _filter(value: string): IArticulo[] {
+    if (value && this.articulos) {
+      const filterValue = value.toLowerCase();
+      return this.articulos.filter(option => option.descripcion.toLowerCase().indexOf(filterValue) === 0);
+    }
 
-    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+    return [];
   }
+
   createForm(): void {
     this.registerForm = this.formBuilder.group({
       codigo: ['', Validators.compose([
@@ -87,6 +87,11 @@ export class EditcotizaciondetalleComponent implements OnInit {
       precio: [''],
       imptotal: [''],
     });
+
+    const descripcionForm = this.registerForm.get('descripcion');
+    this.filteredArticulos = descripcionForm.valueChanges.pipe(
+      map(value => this._filter(value))
+    );
   }
 
   getCotizacion(): void {
@@ -144,8 +149,8 @@ export class EditcotizaciondetalleComponent implements OnInit {
   addCotizacion(): void {
     const data = this.prepareData();
 
-/*     console.log('data');
-    console.log(data); */
+    /*     console.log('data');
+        console.log(data); */
     this.cotizacionService.addCotizacion(data)
       .subscribe(response => {
         this.update.emit(response);

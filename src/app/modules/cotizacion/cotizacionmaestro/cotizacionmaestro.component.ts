@@ -60,8 +60,20 @@ export class CotizacionmaestroComponent implements OnInit {
         this.dataSource.data = this.cotizacion;
         this.dataSource.paginator = this.paginator;
         this.paginator._intl.itemsPerPageLabel = 'Item por Pagina:';
-        this.detalle.emit(this.cotizacion[0].cotizaciones);
+        // this.detalle.emit(this.cotizacion[0].cotizaciones);
+        this.updateCotizacionSelected(true);
       });
+  }
+
+  updateCotizacionSelected(emit?: boolean) {
+    if (this.cotizacionSelected) {
+      this.cotizacionSelected = this.cotizacion.find((v, i) => v.id === this.cotizacionSelected.id);
+    } else {
+      this.cotizacionSelected = this.cotizacion[0];
+    }
+    if (emit) {
+      this.detalle.emit(this.cotizacionSelected.cotizaciones);
+    }
   }
 
   viewRecorddetail(cotizacion: ICotizacion): void {

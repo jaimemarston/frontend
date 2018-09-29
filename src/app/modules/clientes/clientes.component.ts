@@ -12,11 +12,11 @@ import { SelectionModel } from '@angular/cdk/collections';
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
-  styleUrls: ['./../../app.component.scss']
+  styleUrls: ['./../../app.component.scss', './clientes.component.scss']
 })
 
 export class ClientesComponent implements OnInit {
- /* displayedColumns: string[] = ['select', 'id', 'codigo', 'ruc' ,'nombre', 'telefono1', 'correo', 'options'];*/
+  /* displayedColumns: string[] = ['select', 'id', 'codigo', 'ruc' ,'nombre', 'telefono1', 'correo', 'options'];*/
   displayedColumns: string[] = ['select', 'codigo', 'ruc', 'nombre', 'telefono1', 'correo', 'options'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -51,7 +51,7 @@ export class ClientesComponent implements OnInit {
         // this.clientes = response.filter(v => v.id < 93) filtrando el array;
         /* console.log(this.clientes); */
         this.dataSource.paginator = this.paginator;
-        this.paginator._intl.itemsPerPageLabel= 'Item por Pagina:';
+        this.paginator._intl.itemsPerPageLabel = 'Item por Pagina:';
       });
   }
 
@@ -104,7 +104,23 @@ export class ClientesComponent implements OnInit {
 
 
   openPrint() {
-    window.print();
+    // window.print();
+    const prtContent = document.getElementById('div_print');
+    const getTbody = () => {
+      let tbody = this.clientes.map(c => `<tr><td>${c.codigo}</td><td>${c.ruc}</td><td>${c.nombre}</td></tr>`).join('');
+      return tbody;
+    };
+    prtContent.innerHTML = `
+                        <table border="1">
+                          <thead><th>Codigo</th><th>Ruc</th><th>Nombre</th></thead>
+                          <tbody> ${getTbody()} </tbody>
+                        </table>`;
+    const WinPrint = window.open();
+    WinPrint.document.write(prtContent.innerHTML);
+    WinPrint.document.close();
+    WinPrint.focus();
+    WinPrint.print();
+    WinPrint.close();
   }
 
   /**

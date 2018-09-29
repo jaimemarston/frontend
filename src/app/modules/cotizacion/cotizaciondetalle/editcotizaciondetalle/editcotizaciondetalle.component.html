@@ -1,68 +1,88 @@
-
 <div class="container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
 
-<form [formGroup]="registerForm">
-  <div class="example-container">
-    <table class="example-full-width" cellspacing="0">
-      <td>
-        <mat-form-field>
-          <input #inputCodigo matInput formControlName="codigo" class="form-control" placeholder="Codigo">
-        </mat-form-field>
-      </td>
-      <!-- <td><mat-form-field><input matInput formControlName="descripcion" class="form-control" placeholder="Descripcion" /></mat-form-field></td> -->
-      <td><mat-form-field class="example-full-width">
-        <input type="text" placeholder="DescripcionNN" aria-label="Number" matInput [formControl]="myControl" formControlName="descripcion" [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="articulos">
-            {{articulos}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field></td>
-      <mat-form-field class="example-full-width">
-        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-      <td><mat-form-field style="width:70px"><input matInput formControlName="desunimed" class="form-control" placeholder="Medida" /></mat-form-field></td>
-      <td><mat-form-field style="width:70px"><input matInput formControlName="cantidad" class="form-control" placeholder="Cantidad" /></mat-form-field></td>
-      <td><mat-form-field style="width:70px"><input matInput formControlName="precio" class="form-control" placeholder="Precio" /></mat-form-field></td>
-      <td><mat-form-field style="width:70px"><input matInput formControlName="imptotal" class="form-control" placeholder="imptotal" /></mat-form-field></td>
-      
-      <td>
-         
- <!--      <button style="margin-right: 8px" mat-raised-button color="warn" matTooltip="Grabar info" [disabled]="!registerForm.valid" *ngIf="id" (click)="saveForm()">
-        <mat-icon>save</mat-icon>
-      </button>
-      
-      <button style="margin-right: 8px" mat-raised-button color="accent" matTooltip="Grabar Nuevo" [disabled]="!registerForm.valid" *ngIf="!id"
-        (click)="saveForm(true)">
-        <mat-icon>done</mat-icon>
-      </button>
+      <form [formGroup]="registerForm">
+        <div class="example-container">
+          <table class="example-full-width" cellspacing="0">
+            <td>
+              <mat-form-field>
+                <input #inputCodigo matInput formControlName="codigo" class="form-control" placeholder="Codigo">
+              </mat-form-field>
+            </td>
+            <!-- <td><mat-form-field><input matInput formControlName="descripcion" class="form-control" placeholder="Descripcion" /></mat-form-field></td> -->
+            <td>
+              <mat-form-field class="example-full-width">
+                <input type="text" placeholder="DescripcionNN" aria-label="Number" matInput
+                       formControlName="descripcion" [matAutocomplete]="auto">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                  <mat-option *ngFor="let option of filteredArticulos | async" [value]="option.descripcion">
+                    {{option.descripcion}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </td>
+            <!--<mat-form-field class="example-full-width">-->
+            <!--<input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"-->
+            <!--[matAutocomplete]="auto">-->
+            <!--<mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">-->
+            <!--&lt;!&ndash;<mat-option *ngFor="let option of filteredArticulos | async" [value]="option">&ndash;&gt;-->
+            <!--&lt;!&ndash;{{option}}&ndash;&gt;-->
+            <!--&lt;!&ndash;</mat-option>&ndash;&gt;-->
+            <!--<mat-option *ngFor="let option of articulos" [value]="option.id">-->
+            <!--{{option.descripcion}}-->
+            <!--</mat-option>-->
+            <!--</mat-autocomplete>-->
+            <!--</mat-form-field>-->
+            <td>
+              <mat-form-field style="width:70px"><input matInput formControlName="desunimed" class="form-control"
+                                                        placeholder="Medida"/></mat-form-field>
+            </td>
+            <td>
+              <mat-form-field style="width:70px"><input matInput formControlName="cantidad" class="form-control"
+                                                        placeholder="Cantidad"/></mat-form-field>
+            </td>
+            <td>
+              <mat-form-field style="width:70px"><input matInput formControlName="precio" class="form-control"
+                                                        placeholder="Precio"/></mat-form-field>
+            </td>
+            <td>
+              <mat-form-field style="width:70px"><input matInput formControlName="imptotal" class="form-control"
+                                                        placeholder="imptotal"/></mat-form-field>
+            </td>
 
-      <button style="margin-right: 8px" mat-raised-button color="primary" matTooltip="Grabar Nuevo" (click)="onBack()">
-        <mat-icon>undo</mat-icon>
-      </button> -->
-      <button mat-stroked-button  (click)="onBack()"  class="botonvolver" >
-          Volver</button>
-          
-      <button mat-stroked-button  [disabled]="!registerForm.valid"
-      *ngIf="id" (click)="saveForm()"  class="botonvolver" >
-          Grabar</button>
-  
-      <button mat-stroked-button  [disabled]="!registerForm.valid"
-      *ngIf="!id" (click)="saveForm(true)"  class="botonvolver" >
-          Grabar</button>
-    </table>
-    
+            <td>
+
+              <!--      <button style="margin-right: 8px" mat-raised-button color="warn" matTooltip="Grabar info" [disabled]="!registerForm.valid" *ngIf="id" (click)="saveForm()">
+                     <mat-icon>save</mat-icon>
+                   </button>
+
+                   <button style="margin-right: 8px" mat-raised-button color="accent" matTooltip="Grabar Nuevo" [disabled]="!registerForm.valid" *ngIf="!id"
+                     (click)="saveForm(true)">
+                     <mat-icon>done</mat-icon>
+                   </button>
+
+                   <button style="margin-right: 8px" mat-raised-button color="primary" matTooltip="Grabar Nuevo" (click)="onBack()">
+                     <mat-icon>undo</mat-icon>
+                   </button> -->
+              <button mat-stroked-button (click)="onBack()" class="botonvolver">
+                Volver
+              </button>
+
+              <button mat-stroked-button [disabled]="!registerForm.valid"
+                      *ngIf="id" (click)="saveForm()" class="botonvolver">
+                Grabar
+              </button>
+
+              <button mat-stroked-button [disabled]="!registerForm.valid"
+                      *ngIf="!id" (click)="saveForm(true)" class="botonvolver">
+                Grabar
+              </button>
+          </table>
 
 
+        </div>
+      </form>
+    </div>
   </div>
-</form>
-  </div>
-</div>
 </div>
