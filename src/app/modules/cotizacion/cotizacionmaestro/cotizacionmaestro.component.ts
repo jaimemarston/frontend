@@ -52,8 +52,7 @@ export class CotizacionmaestroComponent implements OnInit {
   }
 
   getCotizacion(): void {
-    console.log('carga detalle nuevamente. deberia ser referdio al idmaster seleccionado');
-    console.log('no se ejecuta al darle click');
+
     this.cotizacionService.getCotizaciones()
       .subscribe(response => {
         this.cotizacion = response;
@@ -78,11 +77,9 @@ export class CotizacionmaestroComponent implements OnInit {
 
   viewRecorddetail(cotizacion: ICotizacion): void {
     this.selectedId = cotizacion.id;
-    console.log('idselec ' + cotizacion.id);
     this.cotizacionSelected = cotizacion;
     this.detalle.emit(this.cotizacionSelected.cotizaciones);
   }
-
 
   delete(id: number): void {
     this.selectedId = id;

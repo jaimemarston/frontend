@@ -4,24 +4,18 @@
 
     <span>Registro Principal - Relacion de Servicios</span>
     <span style="flex: 1 1 auto;" class="example-spacer"></span>
-
-
     <mat-form-field class="pantallafiltro">
       <input matInput placeholder="Filtro">
     </mat-form-field>
 
     <button mat-stroked-button class="botonimprimir" (click)="openPrint()">
       Imprimir</button>
-
     <button mat-stroked-button ng-click="isValid = !isValid" (click)="addRecord()" class="botonnuevo">
       Nuevo</button>
     <button mat-stroked-button (click)="deleteAllSelecteds()" class="botoneliminar" color="warn">
       Eliminar</button>
-
   </mat-toolbar-row>
 
-
-  <br />
   <div class="button-row">
     <section class='tableSection'>
       <div class="spinner-container">
@@ -46,10 +40,7 @@
             </mat-cell>
           </ng-container>
 
-
           <!--displayedColumns: string[] = ['select', 'id', 'codigo', 'ruc' , 'nombre', 'telefono1', 'correo', 'options']; Name Column -->
-
-
           <ng-container matColumnDef="codigo">
             <mat-header-cell *matHeaderCellDef> CODIGO</mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.codigo}}</mat-cell>

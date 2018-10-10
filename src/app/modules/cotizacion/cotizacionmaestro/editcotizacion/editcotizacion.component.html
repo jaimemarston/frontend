@@ -25,17 +25,18 @@
       <td><mat-form-field><input matInput formControlName="correoruc" class="form-control" placeholder="Email" /></mat-form-field></td>
       <td>
         <mat-form-field>
+          
           <mat-select formControlName="estado" class="form-control" placeholder="estado" [(value)]="selectedest">
             <mat-option class="pantallafiltro" *ngFor="let est of estados" [value]="est.codigo">{{est.descripcion}}</mat-option>
           </mat-select>
         </mat-form-field>
       </td>
      
-      <td><mat-form-field><input matInput formControlName="desmonepago" class="form-control" placeholder="Monepago" /></mat-form-field></td>
+      <td><mat-form-field><input matInput formControlName="desmonepago" class="form-control" placeholder="Monepago" [(value)]="selectedmoneda"/></mat-form-field></td>
       
     </table>
 
-    <br><br>
+    
 <!--     <div class="form-group" >
       <button style="margin-right: 8px" mat-raised-button color="warn" matTooltip="Grabar info" [disabled]="!registerForm.valid" *ngIf="id" (click)="saveForm()">
         <mat-icon>save</mat-icon>

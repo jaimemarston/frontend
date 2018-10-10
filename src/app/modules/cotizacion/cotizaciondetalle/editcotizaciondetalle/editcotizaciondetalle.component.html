@@ -5,20 +5,21 @@
       <form [formGroup]="registerForm">
         <div class="example-container">
           <table class="example-full-width" cellspacing="0">
-            <td>
+<!--             <td>
               <mat-form-field>
-                <input #inputCodigo matInput formControlName="codigo" class="form-control" placeholder="Codigo">
+                <input  matInput formControlName="codigo" class="form-control" placeholder="Codigo">
               </mat-form-field>
-            </td>
+            </td> -->
             <!-- <td><mat-form-field><input matInput formControlName="descripcion" class="form-control" placeholder="Descripcion" /></mat-form-field></td> -->
             <td>
               <mat-form-field class="example-full-width">
-                <input type="text" placeholder="DescripcionNN" aria-label="Number" matInput
+                <input #inputCodigo type="text" placeholder="DescripcionNN" aria-label="Number" matInput
                        formControlName="descripcion" [matAutocomplete]="auto">
                 <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                   <mat-option *ngFor="let option of filteredArticulos | async" [value]="option.descripcion">
                     {{option.descripcion}}
                   </mat-option>
+                  
                 </mat-autocomplete>
               </mat-form-field>
             </td>

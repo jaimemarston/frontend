@@ -8,10 +8,10 @@
     <button mat-stroked-button class="botonimprimir" (click)="openPrint()">
       Imprimir
     </button>
-    <button mat-stroked-button ng-click="isValid = !isValid" (click)="addRecord()" class="botonnuevo">
+    <button mat-stroked-button matTooltip="Agregar Nuevo" ng-click="isValid = !isValid" (click)="addRecord()" class="botonnuevo">
       Nuevo
     </button>
-    <button mat-stroked-button (click)="deleteAllSelecteds()" class="botoneliminar" color="warn">
+    <button mat-stroked-button matTooltip="Eliminar seleccionados" (click)="deleteAllSelecteds()" class="botoneliminar" color="warn">
       Eliminar
     </button>
   </mat-toolbar-row>
@@ -84,6 +84,9 @@
               <button (click)="delete(row.id)" mat-icon-button color="accent">
                 <mat-icon style="color: steelblue;vertical-align:baseline" aria-label="Delete">delete</mat-icon>
               </button>
+
+              
+   
             </mat-cell>
           </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -78,6 +78,7 @@ export class ClientesComponent implements OnInit {
   public addRecord() {
     this.edit = true;
     this.selectedId = null;
+
   }
 
   showDataTable(): void {
@@ -111,16 +112,18 @@ export class ClientesComponent implements OnInit {
       return tbody;
     };
     prtContent.innerHTML = `
+                         <h1>Relacion de Clientes</h1>
                         <table border="1">
                           <thead><th>Codigo</th><th>Ruc</th><th>Nombre</th></thead>
                           <tbody> ${getTbody()} </tbody>
-                        </table>`;
+                        </table>
+                        <tfoot><button  onclick='window.print();'>Imprimir</button><button (click)="">Descargar PDF</button></tfoot>`;
     const WinPrint = window.open();
     WinPrint.document.write(prtContent.innerHTML);
-    WinPrint.document.close();
+   /*  WinPrint.document.close();
     WinPrint.focus();
     WinPrint.print();
-    WinPrint.close();
+    WinPrint.close(); */
   }
 
   /**

@@ -3,16 +3,20 @@
 
 .mat-sidenav {
   width: 200px;
+  
 }
 
 /*  menu Superior */
 .example-toolbar1 {
   height: 6%;
   background:#d35400;
+  
+  
   /*background: #ff6d00;*/
   /*font:400 20px/32px Roboto,Helvetica Neue,sans-serif;*/
   /*background:#ffbf00;*/
   color: hsla(0, 0%, 100%, .87);
+  
 }
 
 .sidenav-container {
@@ -24,6 +28,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  
 }
  /*
 .sidenav {
@@ -33,6 +38,7 @@
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
+  
 }
 
 .example-is-mobile .example-toolbar {
@@ -69,6 +75,8 @@
   left: 0;
   right: 0;
   margin-left: 10px;
+  /* box-shadow : 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12); */
+  
 }
 
 h1.example-app-name {
@@ -98,3 +106,4 @@ h1.example-app-name {
 .pantallafiltro{
   font-size: 12px;
 }
+

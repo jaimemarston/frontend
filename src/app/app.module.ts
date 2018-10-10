@@ -5,7 +5,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule } from '@angular/material';
+import { MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule, MatTooltipModule } from '@angular/material';
 import { CoreModule } from './core/core.module';
 
 
@@ -23,12 +23,13 @@ import { CoreModule } from './core/core.module';
     HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
     MatSidenavModule,
     MatListModule,
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
+    MatTooltipModule,
+    MatTooltipModule,
     CoreModule
   ],
   bootstrap: [AppComponent]

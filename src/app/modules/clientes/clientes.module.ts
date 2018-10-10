@@ -20,6 +20,7 @@ import {
   MatNativeDateModule,
   MatSelectModule,
   MatListModule,
+  MatTooltipModule,
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -56,6 +57,7 @@ const routes: Routes = [
     MatDatepickerModule,
     MatDatepickerModule,        // <----- import(must)
     MatNativeDateModule,         // <----- import(optional)
+    MatTooltipModule,
     RouterModule.forChild(routes)
   ],
   declarations: [ClientesComponent, EditClientesComponent],

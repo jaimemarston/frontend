@@ -19,7 +19,10 @@ export class EditCotizacionComponent implements OnInit {
   get id(): number {
     return this._id;
   }
-  selectedest = 0;
+  selectedest: 0;
+
+  selectedmoneda = 'SOLES';
+
   estados: Estados[] = [
     { codigo: 0, descripcion: 'Activo' },
     { codigo: 1, descripcion: 'Anulado' },
@@ -34,6 +37,12 @@ export class EditCotizacionComponent implements OnInit {
     } else {
       if (this.registerForm) {
         this.registerForm.reset();
+
+        this.registerForm = this.formBuilder.group({
+          estado: [0],
+          desmonepago: ['Soles'],
+        });
+
       }
     }
   }
@@ -79,6 +88,7 @@ export class EditCotizacionComponent implements OnInit {
   }
 
   setForm(): void {
+
     this.registerForm.get('codigo').setValue(this.cotizacion.codigo);
     this.registerForm.get('fechadoc').setValue(this.cotizacion.fechadoc);
     this.registerForm.get('ruc').setValue(this.cotizacion.ruc);

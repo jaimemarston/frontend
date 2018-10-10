@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren, ViewChild } from '@angular/core';
 import { ClienteService } from '../../../core/services/cliente.service';
 import { BancoService } from '../../../core/services/banco.service';
 import { IClientes } from '../../../core/interfaces/clientes.interface';
@@ -26,6 +26,7 @@ export class EditClientesComponent implements OnInit, AfterViewInit {
    * */
 
   selectedmon = '0'; /* moneda por defecto */
+  selectedmon2 = '0'; /* moneda por defecto */
   selectedban = '';
   selectedban2 = '';
 
@@ -41,6 +42,7 @@ export class EditClientesComponent implements OnInit, AfterViewInit {
     } else {
       if (this.registerForm) {
         this.registerForm.reset();
+
       }
     }
   }
@@ -60,11 +62,13 @@ monedas: Monedas[] = [
   cliente: IClientes;
   registerForm: FormGroup;
   bancos: Array<Ibancos>;
+  bancos2: Array<Ibancos>;
 
   @Output() back: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() update: EventEmitter<IClientes> = new EventEmitter<IClientes>();
 
-  @ViewChildren('inputs') inputs: QueryList<ElementRef<HTMLInputElement>>;
+  /* @ViewChildren('inputs') inputs: QueryList<ElementRef<HTMLInputElement>>; */
+  @ViewChild('inputNombre') inputNombre: ElementRef<HTMLInputElement>;
 
   constructor(private clienteService: ClienteService,
               private bancoService: BancoService,
@@ -82,6 +86,7 @@ monedas: Monedas[] = [
 
   ngOnInit() {
     this.createForm();
+
     this.getBanco();
   }
 
@@ -92,13 +97,9 @@ monedas: Monedas[] = [
 
   createForm(): void {
     this.registerForm = this.formBuilder.group({
-      codigo: ['', Validators.compose([
-        Validators.required
-      ])],
       nombre: ['', Validators.compose([
         Validators.required,
-        Validators.minLength(10),
-        Validators.maxLength(50),
+        Validators.minLength(1),
       ])],
       ruc: [''],
       telefono1: [''],
@@ -122,6 +123,7 @@ monedas: Monedas[] = [
       fechaini: [''],
       fechafin: [''],
     });
+
   }
 
   getClient(): void {
@@ -129,11 +131,12 @@ monedas: Monedas[] = [
       .subscribe(response => {
         this.cliente = response;
         this.setForm();
+
       });
   }
 
   setForm(): void {
-    this.registerForm.get('codigo').setValue(this.cliente.codigo);
+
     this.registerForm.get('nombre').setValue(this.cliente.nombre);
     this.registerForm.get('ruc').setValue(this.cliente.ruc);
     this.registerForm.get('telefono1').setValue(this.cliente.telefono1);
@@ -168,6 +171,7 @@ monedas: Monedas[] = [
       this.saveClient();
       if (clear) {
         this.registerForm.reset();
+        this.inputNombre.nativeElement.focus();
       }
     } else {
       alert('FORMUARLIO INVALIDO');

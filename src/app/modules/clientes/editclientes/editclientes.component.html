@@ -1,14 +1,15 @@
 <form [formGroup]="registerForm">
   <div class="example-container">
     <table class="example-full-width" cellspacing="0">
-      <td>
+<!--       <td>
         <mat-form-field>
-          <input matInput formControlName="codigo" class="form-control" placeholder="Codigo">
+          <input matInput formControlName="codigo"  class="form-control" placeholder="Codigo" disabled>
         </mat-form-field>
-      </td>
+      </td> -->
+
       <td>
-        <mat-form-field>
-          <input matInput formControlName="nombre" class="form-control" placeholder="Nombre" />
+        <mat-form-field style="width: 300px;">
+          <input #inputNombre matInput formControlName="nombre" class="form-control" placeholder="Nombre" />
         </mat-form-field>
       </td>
       <td>
@@ -96,8 +97,8 @@
         <input #inputs matInput formControlName="banco_moneda2" class="form-control" placeholder="banco_moneda2" />
       </mat-form-field> -->
       <mat-form-field>
-        <mat-select formControlName="banco_moneda1" class="form-control" placeholder="Moneda" [(value)]="selectedmon">
-          <mat-option class="pantallafiltro" *ngFor="let mon of monedas" [value]="mon.codigo">{{mon.descripcion}}</mat-option>
+        <mat-select formControlName="banco_moneda1" class="form-control" placeholder="Moneda" [(value)]="selectedmon2">
+          <mat-option class="pantallafiltro" *ngFor="let mon2 of monedas" [value]="mon2.codigo">{{mon2.descripcion}}</mat-option>
         </mat-select>
       </mat-form-field>
       <td></td>

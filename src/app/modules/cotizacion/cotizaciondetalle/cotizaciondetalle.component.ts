@@ -86,7 +86,8 @@ export class CotizaciondetalleComponent implements OnInit {
     this.cotizacionService.deleteCotizacion(this.selectedId)
       .subscribe(response => {
         console.log(response);
-        this.getCotizacion();
+       /*  this.getCotizacion(); */
+        this.updated.emit(true);
       });
   }
 

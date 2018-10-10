@@ -1,62 +1,71 @@
 <div class="example-container">
-  <mat-toolbar  class="example-toolbar1">     
-    <button mat-icon-button (click)="snav.toggle()" style="background:0 0;border:none;color:white">
-      <mat-icon>menu</mat-icon>
-    </button>
+  <mat-toolbar class="example-toolbar1">
+
+      <button (click)="snav.toggle()"  mat-button="" class="mat-button">
+        <span class="mat-button-wrapper">
+          <mat-icon>menu</mat-icon>
+        </span>
+        <div class="mat-button-ripple mat-ripple"></div>
+        <div class="mat-button-focus-overlay"></div>
+      </button>
+
+    
     <h1 class="example-app-name">Gestion Administrativa</h1>
     <span class="example-spacer"></span>
-    
+
     <table class="example-full-width" cellspacing="0">
-    <mat-form-field class="pantallafiltro" style="width:40%">
-      <mat-select class="pantallafiltro" placeholder="Mes">
-        <mat-option class="pantallafiltro" *ngFor="let mes of meses" [value]="mes.value">
-          {{mes.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <td></td>  
-    <mat-form-field class="pantallafiltro" style="width:50%">
-      <mat-select class="pantallafiltro" placeholder="Periodo">
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{food.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </table>
+      <mat-form-field class="pantallafiltro" style="width:40%">
+        <mat-select class="pantallafiltro" placeholder="Mes">
+          <mat-option class="pantallafiltro" *ngFor="let mes of meses" [value]="mes.value">
+            {{mes.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <td></td>
+      <mat-form-field class="pantallafiltro" style="width:50%">
+        <mat-select class="pantallafiltro" placeholder="Periodo">
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </table>
     <td></td>
     <mat-icon class="example-icon">settings</mat-icon>
     <mat-icon class="material-icons">notifications</mat-icon>
-<!--     <button mat-icon-button [matMenuTriggerFor]="menu">
+    <!--     <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>menu</mat-icon>
       </button -->
-      <mat-menu #menu="matMenu" [overlapTrigger]="false">
-          <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
-              <a mat-menu-item  [routerLink]="[item.route]"
-                        [routerLinkActive]="['active']"
-                        [routerLink]="">
-              <mat-icon class="tc-blue-grey-700">{{item.icon}}</mat-icon>
-              {{item.title}}
-              </a>
-                
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+      <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
+        <a mat-menu-item [routerLink]="[item.route]" [routerLinkActive]="['active']" [routerLink]="">
+          <mat-icon class="tc-blue-grey-700">{{item.icon}}</mat-icon>
+          {{item.title}}
+        </a>
       </ng-template>
-      </mat-menu>
-    <mat-icon class="example-icon">power_settings_new</mat-icon>
+    </mat-menu>
+
+    <button [routerLink]="['/login']" mat-button="" class="mat-button">
+      <span class="mat-button-wrapper">
+        <mat-icon>power_settings_new</mat-icon>
+      </span>
+      <div class="mat-button-ripple mat-ripple"></div>
+      <div class="mat-button-focus-overlay"></div>
+    </button>
   </mat-toolbar>
 
 
 
-<mat-sidenav-container class="example-sidenav-container"
-                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
 
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56">
       <mat-nav-list>
         <ng-template let-item let-last="last" ngFor [ngForOf]="routes">
-                <a mat-menu-item  [routerLink]="[item.route]"
-                          [routerLinkActive]="['active']">
-                <mat-icon class="tc-blue-grey-700">{{item.icon}}</mat-icon>
-                {{item.title}}
-                </a>
+          <a mat-menu-item [routerLink]="[item.route]" [routerLinkActive]="['active']">
+            <mat-icon class="tc-blue-grey-700">{{item.icon}}</mat-icon>
+            {{item.title}}
+          </a>
         </ng-template>
       </mat-nav-list>
     </mat-sidenav>
@@ -70,14 +79,16 @@
           <mat-icon color="primary" class="example-icon">settings</mat-icon>     
           </mat-toolbar>
    -->
-   <mat-sidenav-content>
-     <router-outlet></router-outlet>
-   </mat-sidenav-content>
+    <mat-sidenav-content>
+      <br>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
 
-          
 
-</mat-sidenav-container>
+
+  </mat-sidenav-container>
 </div>
+
 <!--
 <mat-sidenav-container>
   
@@ -101,5 +112,3 @@
   
 </mat-sidenav-container>
 -->
-
-

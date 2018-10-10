@@ -31,7 +31,6 @@ export class CotizacionComponent implements OnInit {
   setDetail(detail: Array<ICotizaciondetalle>): any {
     this.detail = detail;
     this.idMaster = this.cotizacionMaestro.selectedId;
-    console.log('idMaster' + this.idMaster);
   }
 
   getCotizaciones(): void {

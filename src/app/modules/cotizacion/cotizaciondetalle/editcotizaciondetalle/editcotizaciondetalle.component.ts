@@ -78,9 +78,7 @@ export class EditcotizaciondetalleComponent implements OnInit {
 
   createForm(): void {
     this.registerForm = this.formBuilder.group({
-      codigo: ['', Validators.compose([
-        Validators.required
-      ])],
+      codigo: [''],
       descripcion: [''],
       desunimed: [''],
       cantidad: [''],
